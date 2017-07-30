@@ -73,10 +73,15 @@ class Clues extends React.Component {
       <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
       fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
       <View>
-      <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera')}>
-        <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
-      </Image>
-      </TouchableOpacity>
+      {(this.state.solutions[this.state.currentPage] === 'Sober') ?
+                <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Music',
+                {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
+                    <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
+                    </Image>
+                </TouchableOpacity> : <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera', {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
+                    <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
+                    </Image>
+                </TouchableOpacity>}
       </View>
     </View>
     )
