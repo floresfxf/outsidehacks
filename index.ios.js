@@ -12,7 +12,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
+  Image, 
 } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
