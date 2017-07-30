@@ -38,26 +38,26 @@ class Clues extends React.Component {
   render() {
     return (
       <View>
-        <View style={styles.container}>
-          <Image source={require('../images/background.png')}>
+          <View style={styles.container}>
+              <Image source={require('../images/background.png')}>
 
-          <View style={styles.row}>
-            <CluesAppBar navigation={this.props.navigation} />
-          </View>
-          <View style={styles.stepIndicator}>
-            <Text style={{backgroundColor: 'transparent', textAlign: 'center', marginTop: -30, marginBottom: 10}}>Progress</Text>
-            <StepIndicator
-              customStyles={customStyles}
-              currentPosition={this.state.currentPage}
-            />
-        </View>
-          <Button
-          backgroundColor='#000'
-          borderRadius={100}
-          buttonStyle={{width: 50}}
-          title='+'
-          onPress={() => this.props.navigation.navigate('Camera')}
-          />
+                  <View style={styles.row}>
+                      <CluesAppBar navigation={this.props.navigation} />
+                  </View>
+                  <View style={styles.stepIndicator}>
+                      <Text style={{backgroundColor: 'transparent', textAlign: 'center', marginTop: -30, marginBottom: 10}}>Progress</Text>
+                      <StepIndicator
+                          customStyles={customStyles}
+                          currentPosition={this.state.currentPage}
+                      />
+                  </View>
+                  <Button
+                      backgroundColor='#000'
+                      borderRadius={100}
+                      buttonStyle={{width: 50}}
+                      title='+'
+                      onPress={() => this.props.navigation.navigate('Camera')}
+                  />
           <ViewPager
             dataSource={this.state.dataSource}
             renderPage={this.renderViewPagerPage}

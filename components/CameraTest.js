@@ -87,14 +87,17 @@ export default class CameraTest extends Component {
       )
     }
     return (
+
       <Camera
-           ref={(cam) => {
-             this.camera = cam;
-           }}
-           captureTarget={Camera.constants.CaptureTarget.disk}
-           style={styles.preview}
-           aspect={Camera.constants.Aspect.fill}>
-           <Text style={styles.capture} onPress={this.takeCelebrityPicture.bind(this)}>[CAPTURE]</Text>
-       </Camera>
+          ref={(cam) => {
+              this.camera = cam;
+          }}
+          captureTarget={Camera.constants.CaptureTarget.disk}
+          style={styles.preview}
+          aspect={Camera.constants.Aspect.fill}>
+          <Text style={styles.capture} onPress={this.takeCelebrityPicture.bind(this)}>[CAPTURE]</Text>
+          <Image source={require('../images/outsidelandsmill.png')}></Image>
+      </Camera>
+
      )}
   }
