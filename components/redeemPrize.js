@@ -10,9 +10,9 @@ import {
     RefreshControl,
     ScrollView,
     Text,
-    Image
-
+    Image,
 } from 'react-native';
+
 import RPrizesAppBar from './redeemPrizeAppBar';
 import { Card, ListItem, Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
@@ -37,18 +37,27 @@ class Redeem extends React.Component {
         <RPrizesAppBar navigation={this.props.navigation} />
       </View>
         <View>
-          <Card
-            title='PRIZE'
-            >
-            <Text style={{marginBottom: 10}}>
-              COPYCOPYCOPYCOPYCOPYCOPYCOPYCOPYCOPYCOPYCOPYCOPYCOPYCOPYCOPYCOPY
-            </Text>
-            <Button
-              onPress={this._showModal}
-              backgroundColor='#03A9F4'
-              buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              title='REDEEM' />
-            </Card>
+
+
+          <View style={styles.container}>
+            <Image source={require('../images/background.png')}>
+            <Card
+              title='u earned it, dave jr'
+              style={styles.card}
+              >
+              <Text style={{marginBottom: 10}}>
+                prizey prize
+              </Text>
+              <Button
+                onPress={this._showModal}
+                backgroundColor='#03A9F4'
+                buttonStyle={styles.buttonStyle}
+                title='REDEEM' />
+              </Card>
+          </Image>
+        </View>
+
+
         </View>
         <Modal isVisible={this.state.isModalVisible} backdropColor={'white'} backdropOpacity={0.75} >
           <View>
@@ -65,19 +74,31 @@ class Redeem extends React.Component {
   }
 }
 
-export default Redeem;
-
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        height: WINDOW_HEIGHT
+        height: WINDOW_HEIGHT,
+        flex: 1,
+        flexDirection: 'row',
     },
     row: {
         display: 'flex',
         flexDirection: 'row'
+    },
+    card: {
+      flex: 1,
+
+    },
+    buttonStyle: {
+      borderRadius: 10,
+      marginLeft: 10,
+      marginRight: 10,
+      marginBottom: 10
     },
     image: {
       height: 100,
       width: 100
     }
   })
+
+export default Redeem;

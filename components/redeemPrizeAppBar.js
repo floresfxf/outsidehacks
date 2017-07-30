@@ -19,7 +19,7 @@ import { Header } from 'react-native-elements';
 const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
     return (
         <View style={styles.row}>
-          <Text style={styles.titleText}>Congrats</Text>
+          <Text style={styles.text}>HELL YEAH, RANGER</Text>
         </View>
     )
 };
@@ -27,7 +27,7 @@ const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
 const MyCustomLeftComponent = ({load}) => {
     return (
         <TouchableOpacity onPress={() => load()}>
-            <Text style={styles.titleText}>Back</Text>
+            <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
     )
 };
@@ -59,18 +59,26 @@ export default RPrizesAppBar;
 
 const styles = StyleSheet.create({
     AppBar: {
-        display:'flex',
-        flex:1,
-        backgroundColor:'skyblue',
+        flex: 1,
+        backgroundColor:'#63BABD',
         height: 71
     },
     row: {
         display: 'flex',
         flexDirection: 'row'
     },
-    titleText: {
-        color: '#fff',
-        fontSize: 25,
-        fontWeight: '400'
+    text: {
+      alignItems: 'center',
+      color: '#00485A',
+      fontFamily: 'American Typewriter',
+      fontWeight: 'bold',
+      fontSize: 22,
+    },
+    buttonText: {
+      alignItems: 'center',
+      color: '#00485A',
+      fontFamily: 'American Typewriter',
+      fontWeight: 'bold',
+      fontSize: 15,
     },
 });
