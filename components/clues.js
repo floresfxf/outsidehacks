@@ -17,7 +17,11 @@ import StepIndicator from 'react-native-step-indicator';
 import { Button } from 'react-native-elements'
 import CluesAppBar from './CluesAppBar';
 import VendorAppBar from './VendorAppBar';
-const PAGES = ['Page 1','Page 2','Page 3','Page 4','Page 5'];
+// import mockery from "mockery";
+//
+// mockery.enable();
+// mockery.registerMock('../images/camera-flat.png', 0)
+const PAGES = ['Clue 1','Clue 2','Clue 3','Clue 4','Clue 5'];
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -31,15 +35,43 @@ class Clues extends React.Component {
     });
     this.state = {
       dataSource: dataSource.cloneWithPages(PAGES),
-      currentPage: 1,
+      currentPage: 0,
+
     }
+    // require('../images/camera-flat.png')
   }
+
+  componentDidMount() {
+        //if the photo they took was correct, increment current page
+        if(this.props.navigation.state.params) {
+            if(this.props.navigation.state.params.correct){
+                this.setState({currentPage: this.props.navigation.state.params.newClueNumber}, function() {
+                    alert(`${this.props.navigation.state.params.newClueNumber}`)
+                })
+            } else {
+                alert(' do nothing');
+            }
+        }
+}
+            //         if(this.state.currentPage <5){
+            //             alert( `you are on step ${this.state.currentPage}`)
+            //             // this.setState({currentPage: this.state.currentPage + 1})
+            //         } else {
+            //             alert('GOOD JOB YOU WON')
+            //         }
+            //     })
+            //
+            // } else {
+            //     console.log('do nothing');
+            // }
+
 
   render() {
     return (
       <View>
           <View style={styles.container}>
               <Image source={require('../images/background.png')}>
+
 
                   <View style={styles.row}>
                       <CluesAppBar navigation={this.props.navigation} />
@@ -56,12 +88,13 @@ class Clues extends React.Component {
                       borderRadius={100}
                       buttonStyle={{width: 50}}
                       title='+'
-                      onPress={() => this.props.navigation.navigate('Camera')}
+                      onPress={() => this.props.navigation.navigate('Camera', {goal: 'NAME OF PERSON', clue: this.state.currentPage})}
                   />
-          <ViewPager
-            dataSource={this.state.dataSource}
-            renderPage={this.renderViewPagerPage}
-            onChangePage={(page) => {this.setState({currentPage:page})}}
+
+                  <ViewPager
+                      dataSource={this.state.dataSource}
+                      renderPage={this.renderViewPagerPage}
+                      onChangePage={(page) => {this.setState({currentPage:page})}}
             />
         </Image>
       </View>
@@ -70,14 +103,21 @@ class Clues extends React.Component {
   }
   renderViewPagerPage = (data) => {
     return(<View style={styles.page}>
-      <Image source={require('../images/dave.png')}>
+        <Image source={require('../images/dave.png')}>
+            <View>
+                <Text style={{backgroundColor: 'transparent'}}>YO</Text>
+            </View>
+        </Image>
+        <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
+        fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
         <View>
-        <Text style={{backgroundColor: 'transparent'}}>YO</Text>
-        </View>
+            <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera')}>
+                <Image source={require('../images/young.png')} style={{height: 50, width: 50}}>
       </Image>
-      <Text style={{fontFamily: 'American Typewriter',
-      fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
-    </View>)
+      </TouchableOpacity>
+      </View>
+    </View>
+    )
   }
 }
 
