@@ -64,10 +64,10 @@ class HomeScreen extends Component {
           source={{uri: 'https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/271/461/datas/original.png'}}
           style={styles.hacksLogo}></Image>
 
-        <TouchableOpacity onPress={() => this.setState({ visibleModal: 1 })} style={{backgroundColor: 'grey', padding: 5, borderRadius: 5}}>
+        <TouchableOpacity onPress={() => this.setState({ visibleModal: 1 })} style={{backgroundColor: 'grey', padding: 5, borderRadius: 5, marginLeft: -255}}>
           <Text>Ranger</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.setState({ visibleModal: 2 })} style={{backgroundColor: 'grey', padding: 5, borderRadius: 5}}>
+        <TouchableOpacity onPress={() => this.setState({ visibleModal: 2 })} style={{backgroundColor: 'grey', padding: 5, borderRadius: 5, marginLeft: -255}}>
           <Text>Vendor</Text>
         </TouchableOpacity>
 
