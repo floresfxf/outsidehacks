@@ -24,6 +24,15 @@ import Redeem from './components/redeemPrize';
 import { Button, FormLabel, FormInput } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
+
+const ranger = {
+  <Text style={styles.text}>Ranger</Text>
+}
+
+const vendor = {
+  <Text style={styles.text}>Vendor</Text>
+}
+
 class HomeScreen extends Component {
   constructor(){
     super()
@@ -45,10 +54,6 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('Vendor');
   }
 
-  Cancel() {
-    this.setState({ visibleModal: null });
-  }
-
   _renderButton = (text, onPress) => (
   <TouchableOpacity onPress={onPress}>
     <View>
@@ -64,16 +69,12 @@ class HomeScreen extends Component {
           source={{uri: 'https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/271/461/datas/original.png'}}
           style={styles.hacksLogo}></Image>
 
-        <TouchableOpacity onPress={() => this.setState({ visibleModal: 1 })} style={{backgroundColor: 'grey', padding: 5, borderRadius: 5, marginLeft: -255}}>
-          <Text>Ranger</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.setState({ visibleModal: 2 })} style={{backgroundColor: 'grey', padding: 5, borderRadius: 5, marginLeft: -255}}>
-          <Text>Vendor</Text>
-        </TouchableOpacity>
+        {this._renderButton({ranger}, () => this.setState({ visibleModal: 1 }))}
+        {this._renderButton({vendor}, () => this.setState({ visibleModal: 2 }))}
 
 
         <Modal isVisible={this.state.visibleModal === 1}
-          backdropColor={'white'} backdropOpacity={1.00}>
+          style={styles.login} >
           <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
           <FormLabel>Username</FormLabel>
           <FormInput placeholder="Enter Username" onChangeText={(text) => {this.descripText(text)}}/>
@@ -84,9 +85,7 @@ class HomeScreen extends Component {
           <TouchableOpacity onPress={() => {this.login()}}>
               <Text>Log In</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {this.Cancel()}}>
-              <Text>Cancel</Text>
-          </TouchableOpacity>
+          {this._renderButton('Cancel', () => this.setState({ visibleModal: null }))}
           </View>
         </Modal>
 
@@ -102,9 +101,7 @@ class HomeScreen extends Component {
           <TouchableOpacity onPress={() => {this.login2()}}>
               <Text>Log In</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {this.Cancel()}}>
-              <Text>Cancel</Text>
-          </TouchableOpacity>
+          {this._renderButton('Cancel', () => this.setState({ visibleModal: null }))}
           </View>
         </Modal>
       </Image>
@@ -154,7 +151,7 @@ export default hackTester = StackNavigator({
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
@@ -169,7 +166,7 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
     marginRight: 260,
-    marginTop: -1000
+    marginBottom: 300,
   },
   welcome: {
     fontSize: 20,
