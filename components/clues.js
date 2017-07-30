@@ -68,7 +68,7 @@ class Clues extends React.Component {
     return(<View style={styles.page}>
       <Image source={require('../images/dave.png')}>
         <View>
-        <Text style={{backgroundColor: 'transparent'}}>YO</Text>
+        <Text style={{backgroundColor: 'transparent'}}></Text>
         </View>
       </Image>
       <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
