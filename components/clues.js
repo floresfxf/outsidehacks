@@ -16,17 +16,22 @@ import {
 import StepIndicator from 'react-native-step-indicator';
 import CluesAppBar from './CluesAppBar';
 import VendorAppBar from './VendorAppBar';
+import dummyData from './ClueText';
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
 
 class Clues extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      currentPosition: 0,
+      dataSource: ds.cloneWithRows(dummyData.data),
+      currentPage:0
+
     }
   }
+
   render() {
     return (
       <View>
@@ -40,10 +45,8 @@ class Clues extends React.Component {
               direction='vertical'
               customStyles={customStyles}
               currentPosition={this.state.currentPosition}
+              labels={dummyData.data.map(item => item.title)}
             />
-            {/* <View style={style.clueContainer}>
-              <Text>CLUE</Text>
-            </View> */}
           </View>
         </Image>
       </View>
@@ -51,23 +54,8 @@ class Clues extends React.Component {
     )
   }
 }
-//
-// <View style={styles.container}>
-//         <View style={styles.stepIndicator}>
-//           <StepIndicator
-//             customStyles={stepIndicatorStyles}
-//             stepCount={6}
-//             direction='vertical'
-//             currentPosition={this.state.currentPage}
-//             labels={dummyData.data.map(item => item.title)}
-//             />
-//         </View>
-//         <ListView
-//           dataSource={this.state.dataSource}
-//           renderRow={this.renderPage}
-//           onChangeVisibleRows={this.getVisibleRows}
-//           />
-//     </View>
+
+
 
 const customStyles = {
   stepIndicatorSize: 45,
