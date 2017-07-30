@@ -26,7 +26,6 @@ const PAGES = ['Clue 1','Clue 2','Clue 3','Clue 4','Clue 5'];
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
 
-
 class Clues extends React.Component {
   constructor(props) {
     super(props);
@@ -103,19 +102,20 @@ class Clues extends React.Component {
   }
   renderViewPagerPage = (data) => {
     return(<View style={styles.page}>
-        <Image source={require('../images/dave.png')}>
-            <View>
-                <Text style={{backgroundColor: 'transparent'}}>YO</Text>
-            </View>
-        </Image>
+
+        {(this.state.currentPage === 0) ? <Image source={require('../images/clue1.png')}/> : <View></View>}
+        {(this.state.currentPage === 1) ? <Image source={require('../images/clue2.png')}/> : <View></View>}
+        {(this.state.currentPage === 2) ? <Image source={require('../images/clue3.png')}/> : <View></View>}
+        {(this.state.currentPage === 3) ? <Image source={require('../images/clue4.png')}/> : <View></View>}
+        {(this.state.currentPage === 4) ? <Image source={require('../images/clue5.png')}/> : <View></View>}
         <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
         fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
         <View>
             <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera')}>
-                <Image source={require('../images/young.png')} style={{height: 50, width: 50}}>
-      </Image>
-      </TouchableOpacity>
-      </View>
+                <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
+                </Image>
+            </TouchableOpacity>
+        </View>
     </View>
     )
   }
