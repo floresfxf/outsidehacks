@@ -29,6 +29,9 @@ class Prizes extends React.Component {
         <PrizesAppBar navigation={this.props.navigation} />
       </View>
         <Text>Prizes</Text>
+        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Redeem')}>
+          <Text>Redeem</Text>
+        </TouchableOpacity>
       </View>
     )
   }
