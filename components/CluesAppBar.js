@@ -25,7 +25,7 @@ const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
                 fontFamily: 'American Typewriter',
                 fontWeight: 'bold',
                 fontSize: 25,
-              marginLeft: -110}}>Progress</Text>
+              marginLeft: -100}}>Clues</Text>
         </View>
     )
 };
@@ -50,7 +50,7 @@ const MyCustomRightComponent = ({load2}) => {
                   fontFamily: 'American Typewriter',
                   fontWeight: 'bold',
                   fontSize: 18,
-                  marginLeft: -130}}>Cam</Text>
+                  marginLeft: -140}}>Prizes</Text>
         </TouchableOpacity>
     )
 };
@@ -65,7 +65,7 @@ class CluesAppBar extends React.Component {
     }
 
     load2(){
-      this.props.navigation.navigate('Camera');
+      this.props.navigation.navigate('Prizes');
     }
 
   render(){

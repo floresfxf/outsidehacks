@@ -9,20 +9,19 @@ import {
   TouchableOpacity,
   ListView,
   Alert,
-  Button,
   ScrollView,
   Image,
 } from 'react-native';
 import ViewPager from 'react-native-viewpager';
 import StepIndicator from 'react-native-step-indicator';
-const PAGES = ['Page 1','Page 2','Page 3','Page 4','Page 5'];
+import { Button } from 'react-native-elements'
 import CluesAppBar from './CluesAppBar';
 import VendorAppBar from './VendorAppBar';
+const PAGES = ['Page 1','Page 2','Page 3','Page 4','Page 5'];
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
 
-let Page1 = <Image style={{marginTop: 100, marginLeft: 13}} source={require('../images/dave.png')} />
 
 class Clues extends React.Component {
   constructor(props) {
@@ -46,11 +45,19 @@ class Clues extends React.Component {
             <CluesAppBar navigation={this.props.navigation} />
           </View>
           <View style={styles.stepIndicator}>
+            <Text style={{backgroundColor: 'transparent', textAlign: 'center', marginTop: -30, marginBottom: 10}}>Progress</Text>
             <StepIndicator
               customStyles={customStyles}
               currentPosition={this.state.currentPage}
             />
         </View>
+          <Button
+          backgroundColor='#000'
+          borderRadius={100}
+          buttonStyle={{width: 50}}
+          title='+'
+          onPress={() => this.props.navigation.navigate('Camera')}
+          />
           <ViewPager
             dataSource={this.state.dataSource}
             renderPage={this.renderViewPagerPage}
@@ -63,6 +70,11 @@ class Clues extends React.Component {
   }
   renderViewPagerPage = (data) => {
     return(<View style={styles.page}>
+      <Image source={require('../images/dave.png')}>
+        <View>
+        <Text style={{backgroundColor: 'transparent'}}>YO</Text>
+        </View>
+      </Image>
       <Text style={{fontFamily: 'American Typewriter',
       fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
     </View>)
