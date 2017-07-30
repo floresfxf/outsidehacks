@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontFamily: 'American Typewriter',
-    fontSize: 25
+    fontSize: 25,
+    fontWeight: 'bold'
   }
 })
