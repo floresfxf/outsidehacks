@@ -15,17 +15,11 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Header } from 'react-native-elements';
-import Modal from 'react-native-modal';
 
 const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
     return (
         <View style={styles.row}>
-          <Text style={{
-                color: '#00485A',
-                fontFamily: 'American Typewriter',
-                fontWeight: 'bold',
-                fontSize: 25,
-              marginLeft: -110}}>Progress</Text>
+          <Text style={styles.text}>HELL YEAH, RANGER</Text>
         </View>
     )
 };
@@ -33,39 +27,18 @@ const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
 const MyCustomLeftComponent = ({load}) => {
     return (
         <TouchableOpacity onPress={() => load()}>
-        <Text style={{
-              color: '#00485A',
-              fontFamily: 'American Typewriter',
-              fontWeight: 'bold',
-              fontSize: 18}}>Back</Text>
+            <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
     )
 };
 
-const MyCustomRightComponent = ({load2}) => {
-    return (
-        <TouchableOpacity onPress={() => load2()}>
-            <Text style={{
-                  color: '#00485A',
-                  fontFamily: 'American Typewriter',
-                  fontWeight: 'bold',
-                  fontSize: 18,
-                  marginLeft: -130}}>Cam</Text>
-        </TouchableOpacity>
-    )
-};
-
-class CluesAppBar extends React.Component {
+class RPrizesAppBar extends React.Component {
       constructor(){
       super();
     }
 
     load(){
       this.props.navigation.goBack();
-    }
-
-    load2(){
-      this.props.navigation.navigate('Camera');
     }
 
   render(){
@@ -75,7 +48,6 @@ class CluesAppBar extends React.Component {
                   <Header
                       leftComponent={<MyCustomLeftComponent load={() => this.load()} />}
                       centerComponent={<MyCustomCenterComponent />}
-                      rightComponent={<MyCustomRightComponent load2={() => this.load2()} />}
                   />
               </View>
           </View>
@@ -83,12 +55,11 @@ class CluesAppBar extends React.Component {
     }
 }
 
-export default CluesAppBar;
+export default RPrizesAppBar;
 
 const styles = StyleSheet.create({
     AppBar: {
-        display:'flex',
-        flex:1,
+        flex: 1,
         backgroundColor:'#63BABD',
         height: 71
     },
@@ -96,9 +67,18 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row'
     },
-    titleText: {
-        color: '#fff',
-        fontSize: 25,
-        fontWeight: '400'
+    text: {
+      alignItems: 'center',
+      color: '#00485A',
+      fontFamily: 'American Typewriter',
+      fontWeight: 'bold',
+      fontSize: 22,
+    },
+    buttonText: {
+      alignItems: 'center',
+      color: '#00485A',
+      fontFamily: 'American Typewriter',
+      fontWeight: 'bold',
+      fontSize: 15,
     },
 });

@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     AppBar: {
         display:'flex',
         flex:1,
-        backgroundColor:'skyblue',
+        backgroundColor:'#63BABD',
         height: 71
     },
     row: {
