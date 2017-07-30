@@ -59,7 +59,7 @@ class Prizes extends React.Component {
       <View style={styles.container}>
         <Image source={require('../images/background.png')}>
           <View style={styles.row}>
-            <PrizesAppBar navigation={this.props.navigation}/>
+            <PrizesAppBar style={styles.Appbar} navigation={this.props.navigation}/>
           </View>
           <View>
             <ScrollView>
@@ -108,6 +108,12 @@ const styles = StyleSheet.create({
   row: {
     display: 'flex',
     flexDirection: 'row'
+  },
+  AppBar: {
+      display:'flex',
+      flex:1,
+      backgroundColor:'#026978',
+      height: 71
   },
   image: {
     width: 300,
