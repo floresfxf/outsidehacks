@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     AsyncStorage,
+    Dimensions,
     StyleSheet,
     View,
     Text,
@@ -12,6 +13,10 @@ import {
     ScrollView,
 
 } from 'react-native';
+import PrizesAppBar from './PrizesAppBar';
+
+let WINDOW_WIDTH = Dimensions.get('window').width;
+let WINDOW_HEIGHT = Dimensions.get('window').height;
 
 class Prizes extends React.Component {
   constructor(){
@@ -19,7 +24,10 @@ class Prizes extends React.Component {
   }
   render() {
     return (
-      <View>
+      <View style={styles.container}>
+      <View style={styles.row}>
+        <PrizesAppBar navigation={this.props.navigation} />
+      </View>
         <Text>Prizes</Text>
       </View>
     )
@@ -27,3 +35,14 @@ class Prizes extends React.Component {
 }
 
 export default Prizes;
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#fff',
+        height: WINDOW_HEIGHT
+    },
+    row: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+  })
