@@ -35,6 +35,7 @@ class Clues extends React.Component {
     this.state = {
       dataSource: dataSource.cloneWithPages(PAGES),
       currentPage: 0,
+      solutions: ['Sober', 'Water', 'Steve', 'Lars Ulrich', 'idk']//1. Sober by lord, 2. water bottle, 3. steve, 4. Lars Ulrich, 5. idk
 
     }
     // require('../images/camera-flat.png')
@@ -65,7 +66,7 @@ class Clues extends React.Component {
             //             alert('GOOD JOB YOU WON')
             //         }
             //     })
-            //
+            // 1. Sober by lord, 2. water bottle, 3. steve, 4. Lars Ulrich, 5. idk
             // } else {
             //     console.log('do nothing');
             // }
@@ -117,10 +118,18 @@ class Clues extends React.Component {
         <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
         fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
         <View>
-            <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera', {goal: 'NAME OF PERSON', clue: this.state.currentPage})}>
-                <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
-                </Image>
-            </TouchableOpacity>
+            {this.state.solutions[this.state.currentPage] == 'Sober' ?
+                <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}}     onPress={() => this.props.navigation.navigate('AUDIOSHIT', {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
+                    <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
+                    </Image>
+                </TouchableOpacity>
+            :
+
+                <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera', {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
+                    <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
+                    </Image>
+                </TouchableOpacity>}
+
         </View>
     </View>
     )
