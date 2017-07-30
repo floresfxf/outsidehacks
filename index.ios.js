@@ -6,8 +6,12 @@
 
 import React, { Component,} from 'react';
 
-import CameraTest from './CameraTest.js';
 import { StackNavigator } from 'react-navigation';
+import CameraTest from './CameraTest.js';
+import Prizes from './components/prizes';
+import Clues from './components/clues';
+import Vendor from './components/vendor';
+
 
 import {
   AppRegistry,
@@ -33,6 +37,15 @@ class HomeScreen extends Component {
         <TouchableOpacity style={styles.instructions} onPress={()=> this.props.navigation.navigate('Camera')}>
           <Text style={styles.instructions}>Open the camera</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.instructions} onPress={()=> this.props.navigation.navigate('Prizes')}>
+          <Text style={styles.instructions}>Open Prizes page</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.instructions} onPress={()=> this.props.navigation.navigate('Clues')}>
+          <Text style={styles.instructions}>Open Clues page</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.instructions} onPress={()=> this.props.navigation.navigate('Vendor')}>
+          <Text style={styles.instructions}>Open Vendors page</Text>
+        </TouchableOpacity>
         <Text style={styles.instructions}>
           Double tap R on your keyboard to reload,{'\n'}
           Shake or press menu button for dev menu
@@ -45,12 +58,36 @@ class HomeScreen extends Component {
 
 export default hackTester = StackNavigator({
   Home: {
-    screen: HomeScreen
+    screen: HomeScreen,
+    navigationOptions: {
+          header:null
+      }
   },
   Camera: {
-    screen: CameraTest
-  }
-});
+    screen: CameraTest,
+    navigationOptions: {
+          header:null
+      }
+  },
+  Prizes: {
+    screen: Prizes,
+    navigationOptions: {
+          header:null
+      }
+  },
+  Clues: {
+    screen: Clues,
+    navigationOptions: {
+          header:null
+      }
+  },
+  Vendor: {
+    screen: Vendor,
+    navigationOptions: {
+          header:null
+      }
+  },
+}, {headerMode:'screen', initialRouteName: 'Home'});
 
 const styles = StyleSheet.create({
   container: {
