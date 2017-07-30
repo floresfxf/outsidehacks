@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
     marginRight: 260,
-    marginTop: -1000
+    marginTop: -930
   },
   welcome: {
     fontSize: 20,
