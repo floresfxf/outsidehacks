@@ -17,7 +17,7 @@ import StepIndicator from 'react-native-step-indicator';
 import { Button } from 'react-native-elements'
 import CluesAppBar from './CluesAppBar';
 import VendorAppBar from './VendorAppBar';
-const PAGES = ['Page 1','Page 2','Page 3','Page 4','Page 5'];
+const PAGES = ['Clue 1','Clue 2','Clue 3','Clue 4','Clue 5'];
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -31,7 +31,7 @@ class Clues extends React.Component {
     });
     this.state = {
       dataSource: dataSource.cloneWithPages(PAGES),
-      currentPage: 1,
+      currentPage: 0,
     }
   }
 
@@ -45,19 +45,15 @@ class Clues extends React.Component {
             <CluesAppBar navigation={this.props.navigation} />
           </View>
           <View style={styles.stepIndicator}>
-            <Text style={{backgroundColor: 'transparent', textAlign: 'center', marginTop: -30, marginBottom: 10}}>Progress</Text>
+            <Text
+            style={{backgroundColor: 'transparent', textAlign: 'center', marginTop: -45, marginBottom: 1, fontFamily: 'American Typewriter', fontWeight: 'bold', fontSize: 25}}>
+            Progress
+            </Text>
             <StepIndicator
               customStyles={customStyles}
               currentPosition={this.state.currentPage}
             />
         </View>
-          <Button
-          backgroundColor='#000'
-          borderRadius={100}
-          buttonStyle={{width: 50}}
-          title='+'
-          onPress={() => this.props.navigation.navigate('Camera')}
-          />
           <ViewPager
             dataSource={this.state.dataSource}
             renderPage={this.renderViewPagerPage}
@@ -75,9 +71,15 @@ class Clues extends React.Component {
         <Text style={{backgroundColor: 'transparent'}}>YO</Text>
         </View>
       </Image>
-      <Text style={{fontFamily: 'American Typewriter',
+      <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
       fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
-    </View>)
+      <View>
+      <TouchableOpacity style={{backgroundColor:'#000', padding: 8, borderRadius: 50}} onPress={() => this.props.navigation.navigate('Camera')}>
+        <Text style={{color: 'white'}}>+</Text>
+      </TouchableOpacity>
+      </View>
+    </View>
+    )
   }
 }
 
