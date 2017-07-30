@@ -86,12 +86,12 @@ export default class CameraTest extends Component {
                 this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1}); //{result: this.state.currentPage})
                } else {
                    alert(`Sorry that was not ${this.state.goal}`)
-                   this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1})//false});
+                   this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
 
                }
            } else {
                alert(`Sorry that was not ${this.state.goal}`)
-               this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1})//false});
+               this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
            }
         //    alert('response from image capture good')
     })

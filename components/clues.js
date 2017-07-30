@@ -45,10 +45,16 @@ class Clues extends React.Component {
         if(this.props.navigation.state.params) {
             if(this.props.navigation.state.params.correct){
                 this.setState({currentPage: this.props.navigation.state.params.newClueNumber}, function() {
-                    alert(`${this.props.navigation.state.params.newClueNumber}`)
+                    if(this.props.navigation.state.params.newClueNumber === 5) {
+                        alert('u win')
+                    } else {
+                        alert(`you are on step ${this.props.navigation.state.params.newClueNumber}`)
+                    }
+                    // alert(`${this.props.navigation.state.params.newClueNumber}`)
                 })
             } else {
-                alert(' do nothing');
+                // alert(' do nothing');
+                alert(`you are on step ${this.props.navigation.state.params.newClueNumber}`)
             }
         }
 }
@@ -82,13 +88,13 @@ class Clues extends React.Component {
                           currentPosition={this.state.currentPage}
                       />
                   </View>
-                  <Button
+                  {/* <Button
                       backgroundColor='#000'
                       borderRadius={100}
                       buttonStyle={{width: 50}}
                       title='+'
                       onPress={() => this.props.navigation.navigate('Camera', {goal: 'NAME OF PERSON', clue: this.state.currentPage})}
-                  />
+                  /> */}
 
                   <ViewPager
                       dataSource={this.state.dataSource}
@@ -111,7 +117,7 @@ class Clues extends React.Component {
         <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
         fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
         <View>
-            <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera')}>
+            <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera', {goal: 'NAME OF PERSON', clue: this.state.currentPage})}>
                 <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
                 </Image>
             </TouchableOpacity>
