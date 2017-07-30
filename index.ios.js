@@ -24,6 +24,15 @@ import Redeem from './components/redeemPrize';
 import { Button, FormLabel, FormInput } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
+
+const ranger = {
+  <Text style={styles.text}>Ranger</Text>
+}
+
+const vendor = {
+  <Text style={styles.text}>Vendor</Text>
+}
+
 class HomeScreen extends Component {
   constructor(){
     super()
@@ -55,13 +64,17 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this._renderButton('Outsider', () => this.setState({ visibleModal: 1 }))}
-        {this._renderButton('Vendor', () => this.setState({ visibleModal: 2 }))}
+      <Image source={require('./images/login.png')} style={styles.container} >
+        <Image
+          source={{uri: 'https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/271/461/datas/original.png'}}
+          style={styles.hacksLogo}></Image>
+
+        {this._renderButton({ranger}, () => this.setState({ visibleModal: 1 }))}
+        {this._renderButton({vendor}, () => this.setState({ visibleModal: 2 }))}
+
 
         <Modal isVisible={this.state.visibleModal === 1}
-          backdropColor={'white'}
-          backdropOpacity={1.00}>
+          style={styles.login} >
           <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
           <FormLabel>Username</FormLabel>
           <FormInput placeholder="Enter Username" onChangeText={(text) => {this.descripText(text)}}/>
@@ -91,28 +104,7 @@ class HomeScreen extends Component {
           {this._renderButton('Cancel', () => this.setState({ visibleModal: null }))}
           </View>
         </Modal>
-
-
-
-        {/* <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text> */}
-        {/*<TouchableOpacity style={styles.instructions} onPress={()=> this.props.navigation.navigate('Camera')}>
-          <Text style={styles.instructions}>Open the camera</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.instructions} onPress={()=> this.props.navigation.navigate('Prizes')}>
-          <Text style={styles.instructions}>Open Prizes page</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.instructions} onPress={()=> this.props.navigation.navigate('Clues')}>
-          <Text style={styles.instructions}>Open Clues page</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.instructions} onPress={()=> this.props.navigation.navigate('Vendor')}>
-          <Text style={styles.instructions}>Open Vendors page</Text>
-        </TouchableOpacity>*/}
-
-
-
-      </View>
+      </Image>
     );
   }
 }
@@ -163,6 +155,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  text: {
+    fontFamily: 'American Typewriter',
+    fontSize: 20,
+    color: 'white',
+    backgroundColor: '#F26051',
+  },
+  hacksLogo: {
+    height: 300,
+    width: 300,
+    marginRight: 260,
+    marginBottom: 300,
   },
   welcome: {
     fontSize: 20,
