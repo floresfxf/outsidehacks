@@ -58,12 +58,16 @@ class HomeScreen extends Component {
         {this._renderButton('Outsider', () => this.setState({ visibleModal: 1 }))}
         {this._renderButton('Vendor', () => this.setState({ visibleModal: 2 }))}
 
-        <Modal isVisible={this.state.visibleModal === 1} backdropColor={'white'} backdropOpacity={1.00}>
+        <Modal isVisible={this.state.visibleModal === 1}
+          backdropColor={'white'}
+          backdropOpacity={1.00}>
           <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
           <FormLabel>Username</FormLabel>
           <FormInput placeholder="Enter Username" onChangeText={(text) => {this.descripText(text)}}/>
           <FormLabel>Password</FormLabel>
-          <FormInput placeholder="Enter Password" secureTextEntry={true} onChangeText={(text) => {this.descripText(text)}}/>
+          <FormInput placeholder="Enter Password"
+            secureTextEntry={true}
+            onChangeText={(text) => {this.descripText(text)}}/>
           <TouchableOpacity onPress={() => {this.login()}}>
               <Text>Log In</Text>
           </TouchableOpacity>
@@ -71,12 +75,15 @@ class HomeScreen extends Component {
           </View>
         </Modal>
 
-        <Modal isVisible={this.state.visibleModal === 2} backdropColor={'white'} backdropOpacity={1.00}>
+        <Modal isVisible={this.state.visibleModal === 2}
+          backdropColor={'white'} backdropOpacity={1.00}>
           <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
           <FormLabel>Username</FormLabel>
           <FormInput placeholder="Enter Company Name" onChangeText={(text) => {this.descripText(text)}}/>
           <FormLabel>Password</FormLabel>
-          <FormInput placeholder="Enter Password" secureTextEntry={true} onChangeText={(text) => {this.descripText(text)}}/>
+          <FormInput placeholder="Enter Password"
+            secureTextEntry={true}
+            onChangeText={(text) => {this.descripText(text)}}/>
           <TouchableOpacity onPress={() => {this.login2()}}>
               <Text>Log In</Text>
           </TouchableOpacity>
