@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     AsyncStorage,
+    Dimensions,
     StyleSheet,
     View,
     Text,
@@ -12,6 +13,10 @@ import {
     ScrollView,
 
 } from 'react-native';
+import VendorAppBar from './VendorAppBar';
+
+let WINDOW_WIDTH = Dimensions.get('window').width;
+let WINDOW_HEIGHT = Dimensions.get('window').height;
 
 class Vendor extends React.Component {
   constructor(){
@@ -19,7 +24,10 @@ class Vendor extends React.Component {
   }
   render() {
     return (
-      <View>
+      <View style={styles.container}>
+      <View style={styles.row}>
+        <VendorAppBar navigation={this.props.navigation}/>
+      </View>
         <Text>Vendor</Text>
       </View>
     )
@@ -27,3 +35,14 @@ class Vendor extends React.Component {
 }
 
 export default Vendor;
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#fff',
+        height: WINDOW_HEIGHT
+    },
+    row: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+  })

@@ -19,7 +19,7 @@ import { Header } from 'react-native-elements';
 const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
     return (
         <View style={styles.row}>
-          <Text style={styles.titleText}>Clues</Text>
+          <Text style={styles.titleText}>Inventory</Text>
         </View>
     )
 };
@@ -32,7 +32,7 @@ const MyCustomLeftComponent = ({load}) => {
     )
 };
 
-class CluesAppBar extends React.Component {
+class VendorAppBar extends React.Component {
       constructor(){
       super();
     }
@@ -55,7 +55,7 @@ class CluesAppBar extends React.Component {
     }
 }
 
-export default CluesAppBar;
+export default VendorAppBar;
 
 const styles = StyleSheet.create({
     AppBar: {
