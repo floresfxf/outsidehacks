@@ -17,6 +17,10 @@ import StepIndicator from 'react-native-step-indicator';
 import { Button } from 'react-native-elements'
 import CluesAppBar from './CluesAppBar';
 import VendorAppBar from './VendorAppBar';
+// import mockery from "mockery";
+//
+// mockery.enable();
+// mockery.registerMock('../images/camera-flat.png', 0)
 const PAGES = ['Clue 1','Clue 2','Clue 3','Clue 4','Clue 5'];
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
@@ -31,32 +35,72 @@ class Clues extends React.Component {
     this.state = {
       dataSource: dataSource.cloneWithPages(PAGES),
       currentPage: 0,
+      solutions: ['Sober', 'Water', 'Steve', 'Lars Ulrich', 'idk']//1. Sober by lord, 2. water bottle, 3. steve, 4. Lars Ulrich, 5. idk
+
     }
+    // require('../images/camera-flat.png')
   }
+
+  componentDidMount() {
+        //if the photo they took was correct, increment current page
+        if(this.props.navigation.state.params) {
+            if(this.props.navigation.state.params.correct){
+                this.setState({currentPage: this.props.navigation.state.params.newClueNumber}, function() {
+                    if(this.props.navigation.state.params.newClueNumber === 5) {
+                        alert('u win')
+                    } else {
+                        alert(`you are on step ${this.props.navigation.state.params.newClueNumber}`)
+                    }
+                    // alert(`${this.props.navigation.state.params.newClueNumber}`)
+                })
+            } else {
+                // alert(' do nothing');
+                alert(`you are on step ${this.props.navigation.state.params.newClueNumber}`)
+            }
+        }
+}
+            //         if(this.state.currentPage <5){
+            //             alert( `you are on step ${this.state.currentPage}`)
+            //             // this.setState({currentPage: this.state.currentPage + 1})
+            //         } else {
+            //             alert('GOOD JOB YOU WON')
+            //         }
+            //     })
+            // 1. Sober by lord, 2. water bottle, 3. steve, 4. Lars Ulrich, 5. idk
+            // } else {
+            //     console.log('do nothing');
+            // }
+
 
   render() {
     return (
       <View>
-        <View style={styles.container}>
-          <Image source={require('../images/background.png')}>
+          <View style={styles.container}>
+              <Image source={require('../images/background.png')}>
 
-          <View style={styles.row}>
-            <CluesAppBar navigation={this.props.navigation} />
-          </View>
-          <View style={styles.stepIndicator}>
-            <Text
-            style={{backgroundColor: 'transparent', textAlign: 'center', marginTop: -45, marginBottom: 1, fontFamily: 'American Typewriter', fontWeight: 'bold', fontSize: 25}}>
-            Progress
-            </Text>
-            <StepIndicator
-              customStyles={customStyles}
-              currentPosition={this.state.currentPage}
-            />
-        </View>
-          <ViewPager
-            dataSource={this.state.dataSource}
-            renderPage={this.renderViewPagerPage}
-            onChangePage={(page) => {this.setState({currentPage:page})}}
+
+                  <View style={styles.row}>
+                      <CluesAppBar navigation={this.props.navigation} />
+                  </View>
+                  <View style={styles.stepIndicator}>
+                      <Text style={{backgroundColor: 'transparent', textAlign: 'center', marginTop: -30, marginBottom: 10}}>Progress</Text>
+                      <StepIndicator
+                          customStyles={customStyles}
+                          currentPosition={this.state.currentPage}
+                      />
+                  </View>
+                  {/* <Button
+                      backgroundColor='#000'
+                      borderRadius={100}
+                      buttonStyle={{width: 50}}
+                      title='+'
+                      onPress={() => this.props.navigation.navigate('Camera', {goal: 'NAME OF PERSON', clue: this.state.currentPage})}
+                  /> */}
+
+                  <ViewPager
+                      dataSource={this.state.dataSource}
+                      renderPage={this.renderViewPagerPage}
+                      onChangePage={(page) => {this.setState({currentPage:page})}}
             />
         </Image>
       </View>
