@@ -13,6 +13,7 @@
     "react-native": "0.46.4",
     "react-native-camera": "^0.9.4",
     "react-native-elements": "^0.15.0",
+    "react-native-modal": "^2.5.0",
     "react-native-step-indicator": "0.0.6",
     "react-native-submit-button": "^1.0.5",
     "react-native-vector-icons": "^4.2.0",
