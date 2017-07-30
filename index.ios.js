@@ -20,7 +20,7 @@ import CameraTest from './components/CameraTest.js';
 import Prizes from './components/prizes';
 import Clues from './components/clues';
 import Vendor from './components/vendor';
-import Redeem from './components/redeemPrize';
+import Music from './components/Music';
 import { Button, FormLabel, FormInput } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
@@ -65,15 +65,15 @@ class HomeScreen extends Component {
           style={styles.hacksLogo}></Image>
 
         <TouchableOpacity onPress={() => this.setState({ visibleModal: 1 })} style={{backgroundColor: '#F26051', padding: 5, marginBottom: 10, borderRadius: 5, marginLeft: -255}}>
-          <Text style={styles.text} >I'm a RANGER!</Text>
+          <Text style={styles.text} >Im a RANGER!</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.setState({ visibleModal: 2 })} style={{backgroundColor: '#F26051', padding: 5, marginTop: 10, borderRadius: 5, marginLeft: -255}}>
-          <Text style={styles.text} >I'm a VENDOR!</Text>
+          <Text style={styles.text} >Im a VENDOR!</Text>
         </TouchableOpacity>
         <Image
           source={require('./images/onlydave.png')}
           style={styles.dave}></Image>
-        <Text style={styles.instructions}>Yo I'm Ranger Dave, pick one to log in!
+        <Text style={styles.instructions}>Yo Im Ranger Dave, pick one to log in!
       </Text>
         <Modal
           isVisible={this.state.visibleModal === 1}
@@ -153,8 +153,8 @@ export default hackTester = StackNavigator({
           header:null
       }
   },
-  Redeem: {
-    screen: Redeem,
+  Music: {
+    screen: Music,
     navigationOptions: {
           header:null
       }

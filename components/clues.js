@@ -109,28 +109,24 @@ class Clues extends React.Component {
   }
   renderViewPagerPage = (data) => {
     return(<View style={styles.page}>
-
-        {(this.state.currentPage === 0) ? <Image source={require('../images/clue1.png')}/> : <View></View>}
-        {(this.state.currentPage === 1) ? <Image source={require('../images/clue2.png')}/> : <View></View>}
-        {(this.state.currentPage === 2) ? <Image source={require('../images/clue3.png')}/> : <View></View>}
-        {(this.state.currentPage === 3) ? <Image source={require('../images/clue4.png')}/> : <View></View>}
-        {(this.state.currentPage === 4) ? <Image source={require('../images/clue5.png')}/> : <View></View>}
-        <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
-        fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
-        <View>
-            {this.state.solutions[this.state.currentPage] == 'Sober' ?
-                <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}}     onPress={() => this.props.navigation.navigate('AUDIOSHIT', {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
+      {(this.state.currentPage === 0) ? <Image source={require('../images/clue1.png')}/> : <View></View>}
+      {(this.state.currentPage === 1) ? <Image source={require('../images/clue2.png')}/> : <View></View>}
+      {(this.state.currentPage === 2) ? <Image source={require('../images/clue3.png')}/> : <View></View>}
+      {(this.state.currentPage === 3) ? <Image source={require('../images/clue4.png')}/> : <View></View>}
+      {(this.state.currentPage === 4) ? <Image source={require('../images/clue5.png')}/> : <View></View>}
+      <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
+      fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
+      <View>
+      {(this.state.solutions[this.state.currentPage] === 'Sober') ?
+                <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Music',
+                {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
                     <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
                     </Image>
-                </TouchableOpacity>
-            :
-
-                <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera', {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
+                </TouchableOpacity> : <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera', {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
                     <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
                     </Image>
                 </TouchableOpacity>}
-
-        </View>
+      </View>
     </View>
     )
   }
