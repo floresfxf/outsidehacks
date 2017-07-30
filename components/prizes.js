@@ -31,21 +31,22 @@ import Modal from 'react-native-modal';
 // to change the background of the annoying shadow go into node_modules/Card.js and comment out overlayContainer.backgroundColor !!!!
 
 const list = [
+   {
+    name: 'MEET BRONSON',
+    image: require('../images/bronson.jpg')
+  }, {
+    name: 'VIP UPGRADE',
+    image: require('../images/blueLands.jpg')
+  }, {
+    name: 'KAYTRANADA VINYL',
+    image: require('../images/images.jpg')
+  }, {
+    name: 'HUMANZ Deluxe',
+    image: require('../images/rillaz.jpg')
+  },
   {
-    name: 'T shirt',
-    image: require('../images/2OCT29.jpg')
-  }, {
-    name: 'MEET MIGOS',
-    image: require('../images/2OCT29.jpg')
-  }, {
-    name: 'finesse the plug',
-    image: require('../images/2OCT29.jpg')
-  }, {
-    name: 'lucky day',
-    image: require('../images/2OCT29.jpg')
-  }, {
-    name: 'yam on LeBron',
-    image: require('../images/2OCT29.jpg')
+    name: 'Winelands Discount',
+    image: require('../images/DRANK.jpg')
   }
 ]
 
@@ -69,32 +70,31 @@ class Prizes extends React.Component {
           </View>
           <View>
             <ScrollView>
-              <Grid >
-                {list.map((l, i) => (
-                  <Row>
-                    <Col
-                      size={5}
-                      style={styles.col}>
-                      <Card
-                        image={l.image}
-                        key={i}
-                        title={l.name}
-                        style={styles.card}
-                        titleStyle={styles.cardTitle}
-                        imageStyle={styles.image}>
+              {/* <Grid > */}
+                {
+                  list.map((l, i) => (
+                  // <Row>
+                    // <Col
+                    //   size={5}
+                    //   style={styles.col}>
+                      <View style={styles.card} >
+                          <Text style={[styles.cardTitle, {textAlign: 'center'}]} >{l.name}</Text>
+                        <Image style={{marginLeft: 18}} source={l.image} />
+
 
                         <Button
                           fontFamily='American Typewriter'
                           backgroundColor='#8BA72B'
                           onPress={this._showModal}
-                          buttonStyle={styles.button} title='REDEEM'/>
-                      </Card>
-                    </Col>
-                  </Row>
+                          buttonStyle={{borderRadius: 25, marginTop: 7}}
+                          title='REDEEM'/>
+                      </View>
+
+                  // </Row>
                 ))
               }
-              </Grid>
-              <Modal isVisible={this.state.isModalVisible} backdropColor={'white'} backdropOpacity={0.75} >
+              {/* </Grid> */}
+              <Modal isVisible={this.state.isModalVisible} backdropColor={'#026978'} backdropOpacity={0.75} >
                 <View>
                   <View style={{justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
                   <Image source={require('../images/code.png')} />
@@ -131,38 +131,47 @@ const styles = StyleSheet.create({
       height: 71
   },
   image: {
-    width: 300,
-    height: 300,
+    width: '100%',
+    height: '75%',
     marginRight: 0,
-    borderRadius: 20
+    borderRadius: 10,
+    marginLeft: 5
   },
   button: {
-    borderRadius: 0,
+    borderRadius: 10,
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
-    marginTop: 10,
+    marginTop: 0,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    width: 250
+    width:50
   },
   card: {
     backgroundColor:'#F26051',
-    padding: 15,
+    padding: 20,
     borderColor: 'black',
-    borderRadius: 25
+    borderRadius: 25,
+    width: 300,
+    height: 330,
+    // display: 'flex',
+    // flex: 1,
+    marginLeft: 38,
+    marginTop: 10,
+    marginBottom: 10
   },
   col: {
-    height: 455,
-    marginBottom: 15,
+    height: 20,
+    marginBottom: 5,
     marginTop: 5,
-    marginLeft: 26
+    marginLeft: 5
   },
   cardTitle: {
     fontFamily: 'American Typewriter',
-    fontSize: 25,
-    fontWeight: 'bold'
+    fontSize: 20,
+    fontWeight: 'bold',
+    color:'#00485A'
   }
 })

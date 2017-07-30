@@ -45,6 +45,10 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('Vendor');
   }
 
+  Cancel() {
+      this.setState({ visibleModal: null });
+  }
+
   _renderButton = (text, onPress) => (
   <TouchableOpacity onPress={onPress}>
     <View>
