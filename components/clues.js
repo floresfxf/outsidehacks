@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   AppRegistry,
+  Dimensions,
   StyleSheet,
   Text,
   View,
@@ -9,9 +10,15 @@ import {
   ListView,
   Alert,
   Button,
+  ScrollView,
   Image,
 } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
+import CluesAppBar from './CluesAppBar';
+import VendorAppBar from './VendorAppBar';
+
+let WINDOW_WIDTH = Dimensions.get('window').width;
+let WINDOW_HEIGHT = Dimensions.get('window').height;
 
 class Clues extends React.Component {
   constructor(props) {
@@ -23,20 +30,11 @@ class Clues extends React.Component {
   render() {
     return (
       <View>
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.button}>
-            <Text style={styles.buttonText}>back</Text>
-          </TouchableOpacity>
-          <Text style={styles.text}>PROGRESS</Text>
-          <TouchableOpacity
-            style={styles.button}>
-            <Text style={styles.buttonText}>help</Text>
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.container}>
           <Image source={require('../images/background.png')}>
+          <View style={styles.row}>
+            <CluesAppBar navigation={this.props.navigation} />
+          </View>
           <View style={styles.stepIndicator}>
             <StepIndicator
               direction='vertical'
@@ -97,8 +95,12 @@ const customStyles = {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        flexDirection:'row',
+        backgroundColor: '#fff',
+        height: WINDOW_HEIGHT
+    },
+    row: {
+        display: 'flex',
+        flexDirection: 'row'
     },
     stepIndicator: {
       flex:1,

@@ -7,7 +7,7 @@
 import React, { Component,} from 'react';
 
 import { StackNavigator } from 'react-navigation';
-import CameraTest from './CameraTest.js';
+import CameraTest from './components/CameraTest.js';
 import Prizes from './components/prizes';
 import Clues from './components/clues';
 import Vendor from './components/vendor';
