@@ -19,7 +19,7 @@ import { Header } from 'react-native-elements';
 const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
     return (
         <View style={styles.row}>
-          <Text style={styles.titleText}>Clues</Text>
+          <Text style={styles.titleText}>Progress</Text>
         </View>
     )
 };
@@ -28,6 +28,14 @@ const MyCustomLeftComponent = ({load}) => {
     return (
         <TouchableOpacity onPress={() => load()}>
             <Text style={styles.titleText}>Back</Text>
+        </TouchableOpacity>
+    )
+};
+
+const MyCustomRightComponent = ({load}) => {
+    return (
+        <TouchableOpacity onPress={() => load()}>
+            <Text style={styles.titleText}>Help</Text>
         </TouchableOpacity>
     )
 };
