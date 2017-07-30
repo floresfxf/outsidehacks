@@ -20,6 +20,8 @@ export default class MusicTest extends Component {
     finished: false,
     audioPath: AudioUtils.DocumentDirectoryPath + '/test.aac',
     hasPermission: undefined,
+    goal: '',
+    currentClue: ''
   };
   prepareRecordingPath(audioPath){
     AudioRecorder.prepareRecordingAtPath(audioPath, {
@@ -30,40 +32,50 @@ export default class MusicTest extends Component {
       AudioEncodingBitRate: 32000
     });
   }
-  componentDidMount() {
-    this._checkPermission().then((hasPermission) => {
-      this.setState({ hasPermission });
-      if (!hasPermission) return;
-      this.prepareRecordingPath(this.state.audioPath);
-      AudioRecorder.onProgress = (data) => {
-        this.setState({currentTime: Math.floor(data.currentTime)},()=>{
-          if (this.state.currentTime === 10){
-            this._stop();
-          }
-        });
-      };
-      AudioRecorder.onFinished = (data) => {
-        // Android callback comes in the form of a promise instead.
-        if (Platform.OS === 'ios') {
-          this._finishRecording(data.status === "OK", data.audioFileURL);
-        }
-      };
-    });
-  }
-  _checkPermission() {
-    if (Platform.OS !== 'android') {
-      return Promise.resolve(true);
-    }
-    const rationale = {
-      'title': 'Microphone Permission',
-      'message': 'AudioExample needs access to your microphone so you can record audio.'
-    };
-    return PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO, rationale)
-    .then((result) => {
-      console.log('Permission result:', result);
-      return (result === true || result === PermissionsAndroid.RESULTS.GRANTED);
-    });
-  }
+
+  // componentWillMount() {
+  //       // console.log('event passed was ', this.props.navigation.state.params.event);
+  //     this.setState({
+  //       goal: this.props.navigation.state.params.goal,
+  //       currentClue: this.props.navigation.state.params.clue
+  //     })
+  //   }
+componentDidMount() {
+      this._checkPermission().then((hasPermission) => {
+        this.setState({ hasPermission });
+
+        if (!hasPermission) return;
+
+        this.prepareRecordingPath(this.state.audioPath);
+
+        AudioRecorder.onProgress = (data) => {
+          this.setState({currentTime: Math.floor(data.currentTime)});
+        };
+
+        AudioRecorder.onFinished = (data) => {
+          // Android callback comes in the form of a promise instead.
+          if (Platform.OS === 'ios') {
+            this._finishRecording(data.status === "OK", data.audioFileURL);
+          }
+        };
+      });
+    }
+_checkPermission() {
+      if (Platform.OS !== 'android') {
+        return Promise.resolve(true);
+      }
+
+      const rationale = {
+        'title': 'Microphone Permission',
+        'message': 'AudioExample needs access to your microphone so you can record audio.'
+      };
+
+      return PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO, rationale)
+        .then((result) => {
+          console.log('Permission result:', result);
+          return (result === true || result === PermissionsAndroid.RESULTS.GRANTED);
+        });
+    }
   _renderButton(title, onPress, active) {
     var style = (active) ? styles.activeButtonText : styles.buttonText;
     return (
@@ -151,7 +163,7 @@ export default class MusicTest extends Component {
     .then((audio)=>{
       console.log("RNFS", audio);
       axios({
-         url: 'http://690bb2a1.ngrok.io/audio',
+         url: 'http://235b8ad9.ngrok.io/audio',
          method: "POST",
          data:{
            audio: audio
@@ -166,13 +178,33 @@ export default class MusicTest extends Component {
       })
       .then(responsejson => {
           console.log('response json is', responsejson);
+          if(this.state.goal.toUpperCase() === 'RESULT OF SONG'.toUpperCase() || true){//NOTE : only doing true for testing!!!! take out true
+
+                  alert('you got it')
+               //    this.setState({correct: true})
+               this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1}); //{result: this.state.currentPage})
+            //   } else {
+            //       alert(`Sorry that was not ${this.state.goal}`)
+            //       this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
+              //
+            //   }
+          } else {
+              alert(`Sorry that was not the song`)
+              this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
+          }
       })
       .catch(err => {
         console.log('error in fetch catch ', err);
+        this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
       })
     })
-    .catch((err)=>console.log("ERROR RNFS", err))
+    .catch((err)=>{
+        console.log("ERROR RNFS", err)
+        this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
+    })
   }
+
+
   async _record() {
     if (this.state.recording) {
       console.warn('Already recording!');
