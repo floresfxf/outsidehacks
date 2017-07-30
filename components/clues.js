@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     stepIndicator: {
       flex:1,
       marginLeft: 40,
-      marginBottom: 250,
+      marginBottom: 180,
     },
     header: {
       width: '100%',

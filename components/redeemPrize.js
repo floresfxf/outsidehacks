@@ -41,7 +41,7 @@ class Redeem extends React.Component {
 
           <View style={styles.container}>
             <Image source={require('../images/background.png')}>
-            <Card
+            <View
               title='u earned it, dave jr'
               style={styles.card}
               >
@@ -53,7 +53,7 @@ class Redeem extends React.Component {
                 backgroundColor='#03A9F4'
                 buttonStyle={styles.buttonStyle}
                 title='REDEEM' />
-              </Card>
+              </View>
           </Image>
         </View>
 
