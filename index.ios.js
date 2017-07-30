@@ -61,17 +61,20 @@ class HomeScreen extends Component {
           style={styles.hacksLogo}></Image>
 
         <TouchableOpacity onPress={() => this.setState({ visibleModal: 1 })} style={{backgroundColor: '#F26051', padding: 5, marginBottom: 10, borderRadius: 5, marginLeft: -255}}>
-          <Text style={styles.text} >Ranger</Text>
+          <Text style={styles.text} >I'm a RANGER!</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.setState({ visibleModal: 2 })} style={{backgroundColor: '#F26051', padding: 5, marginTop: 10, borderRadius: 5, marginLeft: -255}}>
-          <Text style={styles.text} >Vendor</Text>
+          <Text style={styles.text} >I'm a VENDOR!</Text>
         </TouchableOpacity>
-
-
+        <Image
+          source={require('./images/onlydave.png')}
+          style={styles.dave}></Image>
+        <Text style={styles.instructions}>Yo I'm Ranger Dave, pick one to log in!
+      </Text>
         <Modal
           isVisible={this.state.visibleModal === 1}
           animationOutTiming= {1}
-          backdropColor={'#63BABD'} backdropOpacity={1}>
+          backdropColor={'#FAB44B'} backdropOpacity={1}>
           <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
           <FormLabel labelStyle={styles.form} >Username</FormLabel>
           <FormInput inputStyle={styles.input} placeholder="Enter Username" onChangeText={(text) => {this.descripText(text)}}/>
@@ -92,7 +95,7 @@ class HomeScreen extends Component {
           isVisible={this.state.visibleModal === 2}
           backdropOpacity={1}
           transparent={true}
-          backdropColor={'#63BABD'}
+          backdropColor={'#FAB44B'}
           backdropOpacity={1.00}>
           <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
           <FormLabel labelStyle={styles.form}  >Username</FormLabel>
@@ -156,6 +159,7 @@ export default hackTester = StackNavigator({
 
 const styles = StyleSheet.create({
   container: {
+    // display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
@@ -172,20 +176,11 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
     marginRight: 260,
-    marginTop: -930
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    marginTop: -700,
+    marginBottom: -30,
   },
   form: {
-    color: '#00485A',
+    color: '#f26051',
     fontSize: 25,
     fontWeight: '400',
     fontFamily: 'American Typewriter',
@@ -194,6 +189,27 @@ const styles = StyleSheet.create({
   },
   input: {
     color: '#00485A'
+  },
+  dave: {
+    alignItems: 'flex-end',
+    height: 138,
+    width: 125,
+    marginTop: 60,
+    marginRight: 50,
+    marginBottom: -50,
+  },
+  instructions: {
+    color: '#00485A',
+    fontSize: 25,
+    fontWeight: '400',
+    fontFamily: 'American Typewriter',
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+    fontSize: 20,
+    marginLeft: -380,
+    height: 210,
+    width: 200,
+    marginTop: -80,
   }
 });
 
