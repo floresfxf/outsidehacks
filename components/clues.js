@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   AppRegistry,
   Dimensions,
@@ -13,18 +13,26 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import ViewPager from 'react-native-viewpager';
 import StepIndicator from 'react-native-step-indicator';
+const PAGES = ['Page 1','Page 2','Page 3','Page 4','Page 5'];
 import CluesAppBar from './CluesAppBar';
 import VendorAppBar from './VendorAppBar';
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
 
+
+
 class Clues extends React.Component {
   constructor(props) {
     super(props);
+    var dataSource = new ViewPager.DataSource({
+      pageHasChanged: (p1, p2) => p1 !== p2,
+    });
     this.state = {
-      currentPosition: 0,
+      dataSource: dataSource.cloneWithPages(PAGES),
+      currentPage: 1,
     }
   }
   render() {
@@ -32,46 +40,57 @@ class Clues extends React.Component {
       <View>
         <View style={styles.container}>
           <Image source={require('../images/background.png')}>
+
           <View style={styles.row}>
             <CluesAppBar navigation={this.props.navigation} />
           </View>
           <View style={styles.stepIndicator}>
             <StepIndicator
-              direction='vertical'
               customStyles={customStyles}
-              currentPosition={this.state.currentPosition}
+              currentPosition={this.state.currentPage}
             />
-            {/* <View style={style.clueContainer}>
-              <Text>CLUE</Text>
-            </View> */}
-          </View>
+        </View>
+
+          <ViewPager
+            dataSource={this.state.dataSource}
+            renderPage={this.renderViewPagerPage}
+            onChangePage={(page) => {this.setState({currentPage:page})}}
+            />
         </Image>
       </View>
     </View>
     )
   }
+  renderViewPagerPage = (data) => {
+    return(<View style={styles.page}>
+      <Text style={{fontFamily: 'American Typewriter',
+      fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
+    </View>)
+  }
 }
-//
-// <View style={styles.container}>
-//         <View style={styles.stepIndicator}>
-//           <StepIndicator
-//             customStyles={stepIndicatorStyles}
-//             stepCount={6}
-//             direction='vertical'
-//             currentPosition={this.state.currentPage}
-//             labels={dummyData.data.map(item => item.title)}
-//             />
-//         </View>
-//         <ListView
-//           dataSource={this.state.dataSource}
-//           renderRow={this.renderPage}
-//           onChangeVisibleRows={this.getVisibleRows}
-//           />
-//     </View>
+
+  // render() {
+  //   return (
+  //     <View style={styles.container}>
+  //       <View style={styles.stepIndicator}>
+  //         <StepIndicator customStyles={firstIndicatorStyles} currentPosition={this.state.currentPage} labels={["Account","Profile","Band","Membership","Dashboard"]} />
+  //       </View>
+  //       <View style={styles.stepIndicator}>
+  //         <StepIndicator customStyles={secondIndicatorStyles} currentPosition={this.state.currentPage} labels={["Cart","Delivery Address","Order Summary","Payment Method","Track"]} />
+  //       </View>
+  //       <View style={styles.stepIndicator}>
+  //         <StepIndicator stepCount={4} customStyles={thirdIndicatorStyles} currentPosition={this.state.currentPage} labels={["Approval","Processing","Shipping","Delivery"]} />
+  //       </View>
+  //
+  //     </View>
+  //   );
+  // }
+
+
 
 const customStyles = {
   stepIndicatorSize: 45,
-  currentStepIndicatorSize:55,
+  currentStepIndicatorSize: 65,
   separatorStrokeWidth: 4,
   currentStepStrokeWidth: 3,
   stepStrokeCurrentColor: '#026978', //teal color for lines
@@ -87,8 +106,8 @@ const customStyles = {
   currentStepIndicatorLabelFontSize: 25,
   stepIndicatorLabelCurrentColor: '#026978',
   stepIndicatorLabelFinishedColor: '#FCB456',
-  stepIndicatorLabelUnFinishedColor: 'rgba(255,255,255,0.5)',
-  labelColor: '#999999',
+  stepIndicatorLabelUnFinishedColor: '#026978',
+  labelColor: '#026978',
   labelSize: 25,
   currentStepLabelColor: '#026978'
 }
@@ -100,19 +119,19 @@ const styles = StyleSheet.create({
     },
     row: {
         display: 'flex',
+        flexWrap: 'wrap',
         flexDirection: 'row'
     },
     stepIndicator: {
-      flex:1,
-      marginLeft: 40,
-      marginBottom: 180,
+      marginLeft: 5,
+      marginTop: 60,
+      marginRight:85,
     },
     header: {
-      width: '100%',
+      width: 100,
       height: 80,
       paddingBottom: 10,
       padding: 20,
-      flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
       backgroundColor: '#63BABD',
@@ -131,12 +150,13 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 18,
     },
-    clueContainer: {
-      width: 50,
-      height: 50,
-      borderColor: 'black',
-      borderRadius: 20,
-    }
+    page: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems:'center',
+      marginRight: 80,
+      paddingBottom: 50,
+    },
 });
 
 export default Clues;

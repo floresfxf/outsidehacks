@@ -26,8 +26,16 @@ const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
 
 const MyCustomLeftComponent = ({load}) => {
     return (
-        <TouchableOpacity onPress={() => load()}>
-            <Text style={styles.buttonText}>Back</Text>
+        <TouchableOpacity style={styles.row} onPress={() => load()}>
+            <Text style={styles.buttonText}>back</Text>
+        </TouchableOpacity>
+    )
+};
+
+const MyCustomRightComponent = ({load}) => {
+    return (
+        <TouchableOpacity style={styles.row} onPress={() => load()}>
+            <Text style={styles.buttonText}>help</Text>
         </TouchableOpacity>
     )
 };
@@ -48,6 +56,7 @@ class RPrizesAppBar extends React.Component {
                   <Header
                       leftComponent={<MyCustomLeftComponent load={() => this.load()} />}
                       centerComponent={<MyCustomCenterComponent />}
+                      rightComponent={<MyCustomRightComponent load={() => this.load()} />}
                   />
               </View>
           </View>
@@ -59,23 +68,21 @@ export default RPrizesAppBar;
 
 const styles = StyleSheet.create({
     AppBar: {
-        flex: 1,
         backgroundColor:'#63BABD',
-        height: 71
+        width: '100%',
+        height: 71,
     },
     row: {
         display: 'flex',
         flexDirection: 'row'
     },
     text: {
-      alignItems: 'center',
       color: '#00485A',
       fontFamily: 'American Typewriter',
       fontWeight: 'bold',
       fontSize: 22,
     },
     buttonText: {
-      alignItems: 'center',
       color: '#00485A',
       fontFamily: 'American Typewriter',
       fontWeight: 'bold',

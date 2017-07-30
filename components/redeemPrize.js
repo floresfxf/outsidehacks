@@ -14,11 +14,17 @@ import {
 } from 'react-native';
 
 import RPrizesAppBar from './redeemPrizeAppBar';
-import { Card, ListItem, Button } from 'react-native-elements';
+import { Card, ListItem, Button, Row, Col, Grid } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
+
+
+let images = {
+  'young': 'https://pbs.twimg.com/profile_images/831592832699731968/AhzjHAZT.jpg',
+  // 'background': '../prizes/young.png'
+}
 
 class Redeem extends React.Component {
   constructor(){
@@ -33,71 +39,84 @@ class Redeem extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <View style={styles.row}>
-        <RPrizesAppBar navigation={this.props.navigation} />
-      </View>
-        <View>
-
-
-          <View style={styles.container}>
-            <Image source={require('../images/background.png')}>
-            <View
-              title='u earned it, dave jr'
-              style={styles.card}
-              >
-              <Text style={{marginBottom: 10}}>
-                prizey prize
+        <View style={styles.row}>
+          <RPrizesAppBar navigation={this.props.navigation} />
+        </View>
+        <Card
+          title='GRAND PRIZE'
+          fontFamily='American Typewriter'
+          backgroundColor='#F26051'
+          >
+            <Image style={styles.image} resizeMode="cover"
+              source={{ uri: images.young }}/>
+              <Text style={styles.text}>
+                You earned it, Ranger. Thanks for being such an A+ ranger,
+                especially in these wild (drunken) times. Here, I found this
+                raffle ticket to enter to potentially win a VIP Meet-and-Greet
+                with a couple of well-loved indie rockers... Young the Giant,
+                ever heard of 'em? Go ahead and scan the QR code with your
+                nearest OutsideLands rep, and we'll notify you if you win!
               </Text>
               <Button
                 onPress={this._showModal}
-                backgroundColor='#03A9F4'
-                buttonStyle={styles.buttonStyle}
+                backgroundColor='#8BA72B'
+                buttonStyle={styles.button}
                 title='REDEEM' />
+              </Card>
+              <View>
+                <Modal isVisible={this.state.isModalVisible} backdropColor={'white'} backdropOpacity={0.75} >
+                  <View>
+                    <View style={{justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+                      <Image source={require('../images/code.png')} />
+                    </View>
+                    <TouchableOpacity onPress={() => {this._hideModal()}}>
+                      <Text style={{marginTop: 10, fontSize: 30, textAlign: 'center'}}>Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                </Modal>
               </View>
-          </Image>
-        </View>
-
-
-        </View>
-        <Modal isVisible={this.state.isModalVisible} backdropColor={'white'} backdropOpacity={0.75} >
-          <View>
-            <View style={{justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
-            <Image source={require('../images/code.png')} />
             </View>
-            <TouchableOpacity onPress={() => {this._hideModal()}}>
-              <Text style={{marginTop: 10, fontSize: 30, textAlign: 'center'}}>Cancel</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
-      </View>
-    )
-  }
-}
+          )
+        }
+      }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
-        height: WINDOW_HEIGHT,
         flex: 1,
-        flexDirection: 'row',
+        // backgroundImage: 'url(' + images.background + ')',
     },
     row: {
         display: 'flex',
         flexDirection: 'row'
     },
-    card: {
+    imagePosition: {
       flex: 1,
-
+      margin: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
-    buttonStyle: {
-      borderRadius: 10,
-      marginLeft: 10,
-      marginRight: 10,
-      marginBottom: 10
+    button: {
+      borderRadius: 0,
+      marginLeft: 0,
+      marginRight: 0,
+      marginBottom: 0
     },
     image: {
-      height: 100,
-      width: 100
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: 200,
+      width: 200,
+      marginLeft: 55,
+    },
+    text: {
+      marginTop: 5,
+      marginBottom: 10,
+      textAlign: 'center',
+      fontFamily: 'American Typewriter',
+      color: 'white',
+    },
+    card: {
+      marginRight: 50,
     }
   })
 
