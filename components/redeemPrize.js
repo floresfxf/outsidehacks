@@ -41,19 +41,11 @@ class Redeem extends React.Component {
 
           <View style={styles.container}>
             <Image source={require('../images/background.png')}>
-            <View
-              title='u earned it, dave jr'
-              style={styles.card}
-              >
-              <Text style={{marginBottom: 10}}>
-                prizey prize
-              </Text>
               <Button
                 onPress={this._showModal}
                 backgroundColor='#03A9F4'
                 buttonStyle={styles.buttonStyle}
                 title='REDEEM' />
-              </View>
           </Image>
         </View>
 
@@ -78,8 +70,8 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         height: WINDOW_HEIGHT,
-        flex: 1,
-        flexDirection: 'row',
+        // flex: 1,
+        // flexDirection: 'row',
     },
     row: {
         display: 'flex',

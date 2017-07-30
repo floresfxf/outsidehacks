@@ -26,6 +26,7 @@ import {
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
+import Modal from 'react-native-modal';
 
 // to change the background of the annoying shadow go into node_modules/Card.js and comment out overlayContainer.backgroundColor !!!!
 
@@ -40,7 +41,7 @@ const list = [
     name: 'finesse the plug',
     image: require('../images/2OCT29.jpg')
   }, {
-    name: 'fuck',
+    name: 'lucky day',
     image: require('../images/2OCT29.jpg')
   }, {
     name: 'yam on LeBron',
@@ -51,7 +52,12 @@ const list = [
 class Prizes extends React.Component {
   constructor() {
     super();
+    this.state = { isModalVisible: false };
   }
+
+  _showModal = () => this.setState({ isModalVisible: true })
+
+  _hideModal = () => this.setState({ isModalVisible: false })
 
   render() {
     return (
@@ -64,7 +70,6 @@ class Prizes extends React.Component {
           <View>
             <ScrollView>
               <Grid >
-
                 {list.map((l, i) => (
                   <Row>
                     <Col
@@ -81,14 +86,24 @@ class Prizes extends React.Component {
                         <Button
                           fontFamily='American Typewriter'
                           backgroundColor='#8BA72B'
+                          onPress={this._showModal}
                           buttonStyle={styles.button} title='REDEEM'/>
-
                       </Card>
                     </Col>
                   </Row>
                 ))
               }
               </Grid>
+              <Modal isVisible={this.state.isModalVisible} backdropColor={'white'} backdropOpacity={0.75} >
+                <View>
+                  <View style={{justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+                  <Image source={require('../images/code.png')} />
+                  </View>
+                  <TouchableOpacity onPress={() => {this._hideModal()}}>
+                    <Text style={{marginTop: 10, fontSize: 30, textAlign: 'center'}}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </Modal>
             </ScrollView>
           </View>
         </Image>
