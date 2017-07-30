@@ -45,6 +45,10 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('Vendor');
   }
 
+  Cancel() {
+      this.setState({ visibleModal: null });
+  }
+
   _renderButton = (text, onPress) => (
   <TouchableOpacity onPress={onPress}>
     <View>
@@ -95,6 +99,7 @@ class HomeScreen extends Component {
           backdropColor={'#63BABD'}
           backdropOpacity={1.00}>
           <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
+          <Text>Hello</Text>
           <FormLabel labelStyle={styles.form}  >Username</FormLabel>
           <FormInput inputStyle={styles.input}  placeholder="Enter Company Name" onChangeText={(text) => {this.descripText(text)}}/>
           <FormLabel labelStyle={styles.form} >Password</FormLabel>
