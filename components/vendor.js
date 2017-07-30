@@ -10,6 +10,7 @@ import {
     Button,
     RefreshControl,
     ScrollView,
+    Image
 
 } from 'react-native';
 import VendorAppBar from './VendorAppBar';
@@ -25,38 +26,40 @@ class Vendor extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+      <Image source={require('../images/background.png')}>
       <View style={styles.row}>
         <VendorAppBar navigation={this.props.navigation}/>
       </View>
       <Container>
      <Content>
        <List>
-         <ListItem itemHeader first>
-           <Text>Giveaway Options</Text>
+         <ListItem style={styles.listItems} itemHeader first>
+           <Text style={styles.title} >Giveaway Options</Text>
          </ListItem>
          <ListItem >
          <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')}>
-           <Text style={{textAlign: 'center', fontSize: 20}}>Caps</Text>
+           <Text style={styles.text}>Caps</Text>
            </TouchableOpacity>
          </ListItem>
          <ListItem>
          <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')}>
-           <Text style={{textAlign: 'center', fontSize: 20}}>T-shirts</Text>
+           <Text style={styles.text}>T-shirts</Text>
            </TouchableOpacity>
          </ListItem>
          <ListItem>
          <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')}>
-           <Text style={{textAlign: 'center', fontSize: 20}}>Ticket Upgrades</Text>
+           <Text style={styles.text}>Ticket Upgrades</Text>
            </TouchableOpacity>
          </ListItem>
          <ListItem>
          <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')}>
-           <Text style={{textAlign: 'center', fontSize: 20}}>Back Stage Passes</Text>
+           <Text style={styles.text}>Back Stage Passes</Text>
            </TouchableOpacity>
          </ListItem>
        </List>
      </Content>
    </Container>
+ </Image>
       </View>
     )
   }
@@ -73,4 +76,19 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row'
     },
+    text: {
+      textAlign: 'center',
+      fontSize: 20,
+      fontFamily: 'American Typewriter',
+      fontWeight: 'bold',
+      color: '#00485A'
+    },
+    title: {
+      fontSize: 15,
+      fontFamily: 'American Typewriter',
+      color: '#00485A'
+    },
+    listItems: {
+      borderColor: '#00485A'
+    }
   })

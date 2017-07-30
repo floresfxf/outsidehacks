@@ -27,7 +27,7 @@ const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
 const MyCustomLeftComponent = ({load}) => {
     return (
         <TouchableOpacity onPress={() => load()}>
-            <Text style={styles.titleText}>Back</Text>
+            <Text style={styles.backButton}>Back</Text>
         </TouchableOpacity>
     )
 };
@@ -69,8 +69,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     titleText: {
-        color: '#fff',
+        color: '#00485A',
         fontSize: 25,
-        fontWeight: '400'
+        fontWeight: '400',
+        fontFamily: 'American Typewriter',
+        fontWeight: 'bold',
+        marginLeft: -60
     },
+    backButton: {
+      color: '#00485A',
+      marginRight: 0,
+      padding: 0,
+      fontFamily: 'American Typewriter',
+      fontWeight: 'bold'
+    }
 });

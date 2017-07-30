@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: '400',
         fontFamily: 'American Typewriter',
+        fontWeight: 'bold',
         marginLeft: -60
     },
 
