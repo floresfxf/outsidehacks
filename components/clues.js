@@ -18,12 +18,11 @@ import StepIndicator from 'react-native-step-indicator';
 const PAGES = ['Page 1','Page 2','Page 3','Page 4','Page 5'];
 import CluesAppBar from './CluesAppBar';
 import VendorAppBar from './VendorAppBar';
-import dummyData from './ClueText';
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
 
-
+let Page1 = <Image style={{marginTop: 100, marginLeft: 13}} source={require('../images/dave.png')} />
 
 class Clues extends React.Component {
   constructor(props) {
@@ -52,7 +51,6 @@ class Clues extends React.Component {
               currentPosition={this.state.currentPage}
             />
         </View>
-
           <ViewPager
             dataSource={this.state.dataSource}
             renderPage={this.renderViewPagerPage}
@@ -70,23 +68,6 @@ class Clues extends React.Component {
     </View>)
   }
 }
-
-  // render() {
-  //   return (
-  //     <View style={styles.container}>
-  //       <View style={styles.stepIndicator}>
-  //         <StepIndicator customStyles={firstIndicatorStyles} currentPosition={this.state.currentPage} labels={["Account","Profile","Band","Membership","Dashboard"]} />
-  //       </View>
-  //       <View style={styles.stepIndicator}>
-  //         <StepIndicator customStyles={secondIndicatorStyles} currentPosition={this.state.currentPage} labels={["Cart","Delivery Address","Order Summary","Payment Method","Track"]} />
-  //       </View>
-  //       <View style={styles.stepIndicator}>
-  //         <StepIndicator stepCount={4} customStyles={thirdIndicatorStyles} currentPosition={this.state.currentPage} labels={["Approval","Processing","Shipping","Delivery"]} />
-  //       </View>
-  //
-  //     </View>
-  //   );
-  // }
 
 
 
