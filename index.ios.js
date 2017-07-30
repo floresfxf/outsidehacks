@@ -12,7 +12,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image, 
+  Image,
 } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
@@ -23,15 +23,6 @@ import Vendor from './components/vendor';
 import Redeem from './components/redeemPrize';
 import { Button, FormLabel, FormInput } from 'react-native-elements';
 import Modal from 'react-native-modal';
-
-
-const ranger = {
-  <Text style={styles.text}>Ranger</Text>
-}
-
-const vendor = {
-  <Text style={styles.text}>Vendor</Text>
-}
 
 class HomeScreen extends Component {
   constructor(){
@@ -165,7 +156,6 @@ export default hackTester = StackNavigator({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
