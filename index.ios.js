@@ -11,6 +11,7 @@ import CameraTest from './CameraTest.js';
 import Prizes from './components/prizes';
 import Clues from './components/clues';
 import Vendor from './components/vendor';
+import Redeem from './components/redeemPrize';
 
 
 import {
@@ -83,6 +84,12 @@ export default hackTester = StackNavigator({
   },
   Vendor: {
     screen: Vendor,
+    navigationOptions: {
+          header:null
+      }
+  },
+  Redeem: {
+    screen: Redeem,
     navigationOptions: {
           header:null
       }

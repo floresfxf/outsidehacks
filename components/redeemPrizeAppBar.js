@@ -19,7 +19,7 @@ import { Header } from 'react-native-elements';
 const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
     return (
         <View style={styles.row}>
-          <Text style={styles.titleText}>Clues</Text>
+          <Text style={styles.titleText}>Congrats</Text>
         </View>
     )
 };
@@ -32,7 +32,7 @@ const MyCustomLeftComponent = ({load}) => {
     )
 };
 
-class CluesAppBar extends React.Component {
+class RPrizesAppBar extends React.Component {
       constructor(){
       super();
     }
@@ -55,13 +55,13 @@ class CluesAppBar extends React.Component {
     }
 }
 
-export default CluesAppBar;
+export default RPrizesAppBar;
 
 const styles = StyleSheet.create({
     AppBar: {
         display:'flex',
         flex:1,
-        backgroundColor:'#63BABD',
+        backgroundColor:'skyblue',
         height: 71
     },
     row: {
