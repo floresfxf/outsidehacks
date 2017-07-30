@@ -33,19 +33,24 @@ import Modal from 'react-native-modal';
 const list = [
    {
     name: 'MEET BRONSON',
+    steps: 'Redeem: 5 steps',
     image: require('../images/bronson.jpg')
   }, {
     name: 'VIP UPGRADE',
+    steps: 'Redeem: 5 steps',
     image: require('../images/blueLands.jpg')
   }, {
     name: 'KAYTRANADA VINYL',
+    steps: 'Redeem: 3 steps',
     image: require('../images/images.jpg')
   }, {
     name: 'HUMANZ Deluxe',
+    steps: 'Redeem: 3 steps',
     image: require('../images/rillaz.jpg')
   },
   {
     name: 'Winelands Discount',
+    steps: 'Redeem: 2 steps',
     image: require('../images/DRANK.jpg')
   }
 ]
@@ -87,7 +92,8 @@ class Prizes extends React.Component {
                           backgroundColor='#8BA72B'
                           onPress={this._showModal}
                           buttonStyle={{borderRadius: 25, marginTop: 7}}
-                          title='REDEEM'/>
+                          title={l.steps} />
+
                       </View>
 
                   // </Row>
