@@ -82,8 +82,10 @@ class Redeem extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        // backgroundImage: 'url(' + images.background + ')',
+        backgroundColor: '#fff',
+        height: WINDOW_HEIGHT,
+        // flex: 1,
+        // flexDirection: 'row',
     },
     row: {
         display: 'flex',

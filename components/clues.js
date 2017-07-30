@@ -18,6 +18,7 @@ import StepIndicator from 'react-native-step-indicator';
 const PAGES = ['Page 1','Page 2','Page 3','Page 4','Page 5'];
 import CluesAppBar from './CluesAppBar';
 import VendorAppBar from './VendorAppBar';
+import dummyData from './ClueText';
 
 let WINDOW_WIDTH = Dimensions.get('window').width;
 let WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -35,6 +36,7 @@ class Clues extends React.Component {
       currentPage: 1,
     }
   }
+
   render() {
     return (
       <View>
