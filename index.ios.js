@@ -24,6 +24,15 @@ import Redeem from './components/redeemPrize';
 import { Button, FormLabel, FormInput } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
+
+const ranger = {
+  <Text style={styles.text}>Ranger</Text>
+}
+
+const vendor = {
+  <Text style={styles.text}>Vendor</Text>
+}
+
 class HomeScreen extends Component {
   constructor(){
     super()
@@ -43,10 +52,6 @@ class HomeScreen extends Component {
   login2() {
     this.setState({ visibleModal: null });
     this.props.navigation.navigate('Vendor');
-  }
-
-  Cancel() {
-    this.setState({ visibleModal: null });
   }
 
   _renderButton = (text, onPress) => (
@@ -160,7 +165,7 @@ export default hackTester = StackNavigator({
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
