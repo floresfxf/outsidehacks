@@ -46,7 +46,7 @@ class HomeScreen extends Component {
   }
 
   Cancel() {
-    this.setState({ visibleModal: null });
+      this.setState({ visibleModal: null });
   }
 
   _renderButton = (text, onPress) => (
@@ -160,7 +160,6 @@ export default hackTester = StackNavigator({
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
@@ -177,7 +176,7 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
     marginRight: 260,
-    marginTop: -1000
+    marginTop: -930
   },
   welcome: {
     fontSize: 20,

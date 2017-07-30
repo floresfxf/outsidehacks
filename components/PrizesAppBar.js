@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         fontFamily: 'American Typewriter',
         fontWeight: 'bold',
-        marginLeft: -60
+        marginLeft: -90
     },
 
     backButton: {
