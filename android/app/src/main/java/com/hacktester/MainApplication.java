@@ -3,6 +3,9 @@ package com.hacktester;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.rnfs.RNFSPackage;
+import com.zmxv.RNSound.RNSoundPackage;
+import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +28,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFSPackage(),
+            new RNSoundPackage(),
+            new ReactNativeAudioPackage(),
             new VectorIconsPackage(),
             new RCTCameraPackage()
       );

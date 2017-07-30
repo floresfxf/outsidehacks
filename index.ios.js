@@ -20,7 +20,6 @@ import CameraTest from './components/CameraTest.js';
 import Prizes from './components/prizes';
 import Clues from './components/clues';
 import Vendor from './components/vendor';
-import Redeem from './components/redeemPrize';
 import Music from './components/Music';
 import { Button, FormLabel, FormInput } from 'react-native-elements';
 import Modal from 'react-native-modal';
@@ -154,14 +153,8 @@ export default hackTester = StackNavigator({
           header:null
       }
   },
-  Redeem: {
-    screen: Redeem,
-    navigationOptions: {
-          header:null
-      }
-  },
   Music: {
-    screen: Redeem,
+    screen: Music,
     navigationOptions: {
           header:null
       }
