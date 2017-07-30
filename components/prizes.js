@@ -69,7 +69,7 @@ class Prizes extends React.Component {
             <PrizesAppBar style={styles.Appbar} navigation={this.props.navigation}/>
           </View>
           <View>
-            <ScrollView>
+            <ScrollView style={{height: WINDOW_HEIGHT - 70}}>
               {/* <Grid > */}
                 {
                   list.map((l, i) => (
