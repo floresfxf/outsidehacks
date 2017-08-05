@@ -92,7 +92,7 @@ _checkPermission() {
           // opacity: .5
           }}>
         </View> */}
-        <Image style={{height: 250, width: 250,}} source={require('../images/record_icon.jpg')} />
+        <Image style={{height: 250, width: 250,}} source={require('../images/mic-flat.png')} />
       </TouchableHighlight>
     );
   }

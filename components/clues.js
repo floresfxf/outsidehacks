@@ -89,6 +89,7 @@ class Clues extends React.Component {
                       <StepIndicator
                           customStyles={customStyles}
                           currentPosition={this.state.currentClue}
+                          /*Change the labels to this.state.PAGES when done editing app*/
                           labels={this.state.solutions}
                           labelSize={5}
                           stepCount={this.state.clues.length}
@@ -127,7 +128,7 @@ class Clues extends React.Component {
                 {this.state.clues[this.state.currentClue].type === 'Camera' ?
                     <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
                     </Image> :
-                    <Image source={require('../images/record_icon.jpg')} style={{height: 50, width: 50}}>
+                    <Image source={require('../images/mic-flat.png')} style={{height: 50, width: 50}}>
                     </Image>
                 }
 
