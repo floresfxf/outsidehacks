@@ -39,12 +39,11 @@ class Clues extends React.Component {
       clues: [
           {hint: 'Although you might not be sober, record a song that is', answer: 'Sober', type:'Music'},
           {hint: 'Find a dancing bearded man... Hint: see the OutsideHack Booth', answer: 'Steve', type: 'Camera'},
-           {hint: 'Patel Nut on Union Street is his favorite place to eat... can you guess who it is?', answer: 'Lars Ulrich', type: 'Camera'},
-            {hint: 'What are we talking about? Body... Obviously', answer: 'Talking Body', type: 'Music'},
-             {hint: 'He raps, he cooks, loves to have fun, and is performing at OutsideLands 2017', answer: 'Action Bronson', type: 'Camera'}],
+          {hint: 'Patel Nut on Union Street is his favorite place to eat... can you guess who it is?', answer: 'Lars Ulrich', type: 'Camera'},
+          {hint: 'What are we talking about? Body... Obviously', answer: 'Talking Body', type: 'Music'},
+          {hint: 'He raps, he cooks, loves to have fun, and is performing at OutsideLands 2017', answer: 'Action Bronson', type: 'Camera'}],
 
-      solutions: ['Sober', 'Steve', 'Lars Ulrich', 'Talking Body', 'Action Bronson']
-
+          solutions: ['Sober', 'Steve', 'Lars Ulrich', 'Talking Body', 'Action Bronson']
     }
   }
 
@@ -100,7 +99,7 @@ class Clues extends React.Component {
                       dataSource={this.state.dataSource}
                       renderPage={this.renderViewPagerPage}
                       onChangePage={(page) => {this.setState({currentClue:page})}}
-                      locked={true}
+                      // locked={true}
             />
         </Image>
       </View>
@@ -117,7 +116,7 @@ class Clues extends React.Component {
         {(this.state.currentClue === 4) ? <Image source={require('../images/clue2.png')}/> : <View></View>} */}
 
         {/* <Image source={require('../images/davetalks_480.png')} /> */}
-        <View><Text>{this.state.clues[this.state.currentClue].hint}</Text></View>
+        <View style={{backgroundColor: 'transparent'}}><Text>{this.state.clues[this.state.currentClue].hint}</Text></View>
         {/* <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
         fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text> */}
         <View>
