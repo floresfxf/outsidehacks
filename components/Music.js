@@ -185,7 +185,7 @@ _checkPermission() {
 
                   alert('You got it')
                //    this.setState({correct: true})
-               this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1}); //{result: this.state.currentPage})
+               this.props.navigation.navigate('Clues', {correct: true, clueNumber: this.state.currentClue}); //{result: this.state.currentPage})
             //   } else {
             //       alert(`Sorry that was not ${this.state.goal}`)
             //       this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
@@ -194,20 +194,20 @@ _checkPermission() {
           } else {
                alert('You didnt get it!')
             //   alert(`Sorry that was not the song`)
-              this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
+              this.props.navigation.navigate('Clues', {correct: false, clueNumber: this.state.currentClue})//false});
           }
       })
       .catch(err => {
         // console.log('error in fetch catch ', err);
          alert('error in axios audio', err)
          console.log(err);
-        this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
+        this.props.navigation.navigate('Clues', {correct: false, clueNumber: this.state.currentClue})
       })
     })
     .catch((err)=>{
         console.log("ERROR RNFS", err)
 
-        this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
+        this.props.navigation.navigate('Clues', {correct: false, clueNumber: this.state.currentClue})
     })
   }
 
