@@ -23,7 +23,7 @@ import Vendor from './components/vendor';
 import Music from './components/Music';
 import { Button, FormLabel, FormInput } from 'react-native-elements';
 import Modal from 'react-native-modal';
-
+console.disableYellowBox = true;
 class HomeScreen extends Component {
   constructor(){
     super()
@@ -51,71 +51,72 @@ class HomeScreen extends Component {
 
   _renderButton = (text, onPress) => (
   <TouchableOpacity onPress={onPress}>
-    <View>
-      <Text>{text}</Text>
-    </View>
+      <View>
+          <Text>{text}</Text>
+      </View>
   </TouchableOpacity>
 );
 
   render() {
     return (
       <Image source={require('./images/login.png')} style={styles.container} >
-        <Image
-          source={{uri: 'https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/271/461/datas/original.png'}}
-          style={styles.hacksLogo}></Image>
+          <Image
+              source={{uri: 'https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/271/461/datas/original.png'}}
+              style={styles.hacksLogo}></Image>
 
-        <TouchableOpacity onPress={() => this.setState({ visibleModal: 1 })} style={{backgroundColor: '#F26051', padding: 5, marginBottom: 10, borderRadius: 5, marginLeft: -255}}>
-          <Text style={styles.text} >Im a RANGER!</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.setState({ visibleModal: 2 })} style={{backgroundColor: '#F26051', padding: 5, marginTop: 10, borderRadius: 5, marginLeft: -255}}>
-          <Text style={styles.text} >Im a VENDOR!</Text>
-        </TouchableOpacity>
-        <Image
-          source={require('./images/onlydave.png')}
-          style={styles.dave}></Image>
-        <Text style={styles.instructions}>Yo Im Ranger Dave, pick one to log in!
-      </Text>
-        <Modal
-          isVisible={this.state.visibleModal === 1}
-          animationOutTiming= {1}
-          backdropColor={'#FAB44B'} backdropOpacity={1}>
-          <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
-          <FormLabel labelStyle={styles.form} >Username</FormLabel>
-          <FormInput inputStyle={styles.input} placeholder="Enter Username" onChangeText={(text) => {this.descripText(text)}}/>
-          <FormLabel labelStyle={styles.form} >Password</FormLabel>
-          <FormInput placeholder="Enter Password"
-            secureTextEntry={true}
-            onChangeText={(text) => {this.descripText(text)}}/>
-          <TouchableOpacity onPress={() => {this.login()}}>
-              <Text style={styles.text} >Log In</Text>
+          <TouchableOpacity onPress={() => this.setState({ visibleModal: 1 })} style={{backgroundColor: '#F26051', padding: 5, marginBottom: 10, borderRadius: 5, marginLeft: -255}}>
+              <Text style={styles.text}>RANGER!</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {this.Cancel()}}>
-              <Text style={styles.text} >Cancel</Text>
+          <TouchableOpacity onPress={() => this.setState({ visibleModal: 2 })} style={{backgroundColor: '#F26051', padding: 5, marginTop: 10, borderRadius: 5, marginLeft: -255}}>
+              <Text style={styles.text}>VENDOR!</Text>
           </TouchableOpacity>
-          </View>
-        </Modal>
+          <Image
+              source={require('./images/onlydave.png')}
+              style={styles.dave}></Image>
+          <Text style={styles.instructions}>Hey! Im Ranger Dave, pick one to log in!</Text>
 
-        <Modal
-          isVisible={this.state.visibleModal === 2}
-          backdropOpacity={1}
-          transparent={true}
-          backdropColor={'#FAB44B'}
-          backdropOpacity={1.00}>
-          <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
-          <FormLabel labelStyle={styles.form}  >Username</FormLabel>
-          <FormInput inputStyle={styles.input}  placeholder="Enter Company Name" onChangeText={(text) => {this.descripText(text)}}/>
-          <FormLabel labelStyle={styles.form} >Password</FormLabel>
-          <FormInput placeholder="Enter Password"
-            secureTextEntry={true}
-            onChangeText={(text) => {this.descripText(text)}}/>
-          <TouchableOpacity onPress={() => {this.login2()}}>
-              <Text style={styles.text} >Log In</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {this.Cancel()}}>
-              <Text style={styles.text} >Cancel</Text>
-          </TouchableOpacity>
-          </View>
-        </Modal>
+
+          <Modal
+              isVisible={this.state.visibleModal === 1}
+              animationOutTiming= {1}
+              backdropColor={'#FAB44B'} backdropOpacity={1}>
+              <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
+                  <FormLabel labelStyle={styles.form} >Username</FormLabel>
+                  <FormInput inputStyle={styles.input} placeholder="Enter Username" onChangeText={(text) => {this.descripText(text)}}/>
+                  <FormLabel labelStyle={styles.form} >Password</FormLabel>
+                  <FormInput placeholder="Enter Password"
+                      secureTextEntry={true}
+                      onChangeText={(text) => {this.descripText(text)}}/>
+                  <TouchableOpacity onPress={() => {this.login()}}>
+                      <Text style={styles.text} >Log In</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => {this.Cancel()}}>
+                      <Text style={styles.text} >Cancel</Text>
+                  </TouchableOpacity>
+              </View>
+          </Modal>
+
+          <Modal
+              isVisible={this.state.visibleModal === 2}
+              backdropOpacity={1}
+              transparent={true}
+              backdropColor={'#FAB44B'}
+              backdropOpacity={1.00}>
+              <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
+                  <FormLabel labelStyle={styles.form}  >Username</FormLabel>
+                  <FormInput inputStyle={styles.input}  placeholder="Enter Company Name" onChangeText={(text) => {this.descripText(text)}}/>
+                  <FormLabel labelStyle={styles.form} >Password</FormLabel>
+                  <FormInput placeholder="Enter Password"
+                      secureTextEntry={true}
+                      onChangeText={(text) => {this.descripText(text)}}/>
+                  <TouchableOpacity onPress={() => {this.login2()}}>
+                      <Text style={styles.text} >Log In</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => {this.Cancel()}}>
+                      <Text style={styles.text} >Cancel</Text>
+                  </TouchableOpacity>
+              </View>
+          </Modal>
       </Image>
     );
   }

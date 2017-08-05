@@ -33,13 +33,13 @@ export default class MusicTest extends Component {
     });
   }
 
-  // componentWillMount() {
-  //       // console.log('event passed was ', this.props.navigation.state.params.event);
-  //     this.setState({
-  //       goal: this.props.navigation.state.params.goal,
-  //       currentClue: this.props.navigation.state.params.clue
-  //     })
-  //   }
+  componentWillMount() {
+        // console.log('event passed was ', this.props.navigation.state.params.event);
+      this.setState({
+        goal: this.props.navigation.state.params.goal,
+        currentClue: this.props.navigation.state.params.clue
+      })
+    }
 componentDidMount() {
       this._checkPermission().then((hasPermission) => {
         this.setState({ hasPermission });
@@ -174,13 +174,17 @@ _checkPermission() {
        })
       .then((response)=> {
           console.log('axios response ', response);
+        //   this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1});
           return response.json();
       })
       .then(responsejson => {
           console.log('response json is', responsejson);
-          if(this.state.goal.toUpperCase() === 'RESULT OF SONG'.toUpperCase() || true){//NOTE : only doing true for testing!!!! take out true
+        //   alert(`${responsejson.title}`)
+        //   if(true){
+          if(responsejson.success && (this.state.goal.toUpperCase() === responsejson.title.toUpperCase())){
+        //NOTE : only doing true for testing!!!! take out true
 
-                  alert('you got it')
+                  alert('You got it')
                //    this.setState({correct: true})
                this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1}); //{result: this.state.currentPage})
             //   } else {
@@ -189,17 +193,20 @@ _checkPermission() {
               //
             //   }
           } else {
-              alert(`Sorry that was not the song`)
+               alert('You didnt get it!')
+            //   alert(`Sorry that was not the song`)
               this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
           }
       })
       .catch(err => {
-        console.log('error in fetch catch ', err);
+        // console.log('error in fetch catch ', err);
+         alert('error', err)
         this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
       })
     })
     .catch((err)=>{
         console.log("ERROR RNFS", err)
+        
         this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
     })
   }
