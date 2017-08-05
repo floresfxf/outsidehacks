@@ -238,12 +238,12 @@ _checkPermission() {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.controls}>
-          {this._renderButton("RECORD", () => {this.state.recording ? this._stop():this._record()}, this.state.recording )}
-          {/* {this._renderButton("PLAY", () => {this._play()} )}
-          {this._renderButton("STOP", () => {this._stop()} )}
-          {this._renderButton("PAUSE", () => {this._pause()} )}
-          {this._renderButton("SEND", () => {this._send()} )} */}
+          <View style={styles.controls}>
+              {this._renderButton("RECORD", () => {this.state.recording ? this._stop():this._record()}, this.state.recording )}
+              {/* {this._renderButton("PLAY", () => {this._play()} )}
+                  {this._renderButton("STOP", () => {this._stop()} )}
+                  {this._renderButton("PAUSE", () => {this._pause()} )}
+              {this._renderButton("SEND", () => {this._send()} )} */}
           <Text style={styles.progressText}>{this.state.currentTime}s</Text>
         </View>
       </View>

@@ -35,8 +35,6 @@ class Clues extends React.Component {
     this.state = {
       dataSource: dataSource.cloneWithPages(PAGES),
       currentClue: 0,
-      openCamera: false,
-      openMic: false,
       finished: false,
       clues: [
           {hint: 'Although you might not be sober, record a song that is', answer: 'Sober', type:'Music'},
@@ -53,15 +51,20 @@ class Clues extends React.Component {
   componentWillMount() {
         //if the photo they took was correct, increment current page
         if(this.props.navigation.state.params) {
+
+            //this.setState({currentClue: this.props.navigation.state.params.clueNumber})
             if(this.props.navigation.state.params.correct){
-                var nextClue = this.state.currentClue + 1;
-                if(nextClue === 5){
+                this.setState({currentClue: this.props.navigation.state.params.clueNumber + 1 })
+                //var nextClue = this.state.currentClue + 1;
+                if(this.state.currentClue === 5){
                     alert('that was correct! YOU WIN')
+                    this.setState({finished: true})
                 } else {
                     alert('that was correct, keep going!')
                 }
-                this.setState({currentClue: nextClue})
+                //this.setState({currentClue: nextClue})
             }else {
+                this.setState({currentClue: this.props.navigation.state.params.clueNumber})
                 alert('that was wrong!')
             }
 
@@ -69,14 +72,8 @@ class Clues extends React.Component {
 }
 
     onAttemptAnswer(){
-        if(this.state.clues[this.state.currentClue].type === 'Camera'){
-            this.setState({openCamera: true})
-        } else if(this.state.clues[this.state.currentClue].type === 'Audio'){
-            this.setState({openMic: false})
-        }
-
         var clueType = this.state.clues[this.state.currentClue].type;
-        this.props.navigation.navigate(clueType, {goal: this.state.clues[this.state.currentClue].answer})
+        this.props.navigation.navigate(clueType, {goal: this.state.clues[this.state.currentClue].answer, clueNumber: this.state.currentClue})
     }
 
   render() {
@@ -90,7 +87,6 @@ class Clues extends React.Component {
                       <CluesAppBar navigation={this.props.navigation} />
                   </View>
                   <View style={styles.stepIndicator}>
-                      <Text style={{backgroundColor: 'transparent', textAlign: 'center', marginTop: -30, marginBottom: 10}}>Progress</Text>
                       <StepIndicator
                           customStyles={customStyles}
                           currentPosition={this.state.currentClue}
@@ -104,6 +100,7 @@ class Clues extends React.Component {
                       dataSource={this.state.dataSource}
                       renderPage={this.renderViewPagerPage}
                       onChangePage={(page) => {this.setState({currentClue:page})}}
+                      locked={true}
             />
         </Image>
       </View>

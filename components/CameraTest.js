@@ -8,7 +8,8 @@ import {
     View,
     StyleSheet,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 import axios from 'axios';
 
@@ -37,13 +38,14 @@ export default class CameraTest extends Component {
             captured: false,
             image: {},
             goal: '',
+            animating: false
         }
     }
 
     componentWillMount() {
         // console.log('event passed was ', this.props.navigation.state.params.event);
         this.setState({
-            goal: this.props.navigation.state.params.goal
+            goal: this.props.navigation.state.params.goal, clueNumber: this.props.navigation.state.params.clueNumber
         })
     }
 
@@ -57,7 +59,7 @@ export default class CameraTest extends Component {
         console.log('find steve  captures');
         this.camera.capture()
         .then((data) => {
-            this.setState({captured: true});
+            this.setState({captured: true, animating: true});
             var userId = '123456';
             var clueNumber = '5';
             let apiUrl = 'http://8ddc3c1b.ngrok.io/api/matchSteve';
@@ -84,18 +86,18 @@ export default class CameraTest extends Component {
                     console.log('matched steve')
                     alert('you got it')
                     //    this.setState({correct: true})
-                    this.props.navigation.navigate('Clues', {correct: true}); //{result: this.state.currentPage})
+                    this.props.navigation.navigate('Clues', {correct: true, clueNumber: this.state.clueNumber}); //{result: this.state.currentPage})
 
                 } else {
                     console.log('did nto match steve')
                     alert(`Sorry that was not ${this.state.goal}`)
-                    this.pro7ps.navigation.navigate('Clues', {correct: false})//false});
+                    this.pro7ps.navigation.navigate('Clues', {correct: false, clueNumber: this.state.clueNumber})//false});
                 }
                 //    alert('response from image capture good')
             })
             .catch((err)=>{
                 console.log('error matching steve', err)
-                this.props.navigation.navigate('Clues', {correct: false})
+                this.props.navigation.navigate('Clues', {correct: false, clueNumber: this.state.clueNumber})
             })
         })
     }
@@ -104,6 +106,7 @@ export default class CameraTest extends Component {
         console.log('celebritypicture captures');
         this.camera.capture()
         .then((data) => {
+            this.setState({captured: true, animating: true})
             var userId = '123456';
             var clueNumber = '5';
             let apiUrl = 'http://8ddc3c1b.ngrok.io/api/recognizeCelebs';
@@ -128,31 +131,23 @@ export default class CameraTest extends Component {
                 console.log('axios response from find celebrity ', response.data);
                 if(response.data.CelebrityFaces.length && response.data.CelebrityFaces.length===0){
                     if(response.data.CelebrityFaces[0].Name.toUpperCase() === this.state.goal.toUpperCase()){
-                        //alert('you got it')
                         console.log('successful photo capture, correct image')
-                        this.props.navigation.navigate('Clues', {correct: true});
+                        this.props.navigation.navigate('Clues', {correct: true, clueNumber: this.state.clueNumber});
                     } else {
                         console.log('incorrect celebrity photo')
-                        //alert(`Sorry that was not ${this.state.goal}`)
-                        this.props.navigation.navigate('Clues', {correct: false})//false});
+                        this.props.navigation.navigate('Clues', {correct: false, clueNumber: this.state.clueNumber})//false});
 
                     }
                 } else {
                     console.log("no celebrities found")
-                    //alert(`Sorry that was not ${this.state.goal}`)
-                    this.props.navigation.navigate('Clues', {correct: false})//false});
+                    this.props.navigation.navigate('Clues', {correct: false, clueNumber: this.state.clueNumber})//false});
                 }
                 //    alert('response from image capture good')
             })
-            // .then(responsejson => {
-            //     //the
-            //     //NEED TO CHECK IF THE FOUDN CELEBRITY IS THE RIGHT ONE
-            //     // console.log('response json is', responsejson);
-            // })
             .catch(err => {
                 alert('Sorry! There was an error');
                 console.log('error matching celebrity in axios', err)
-                this.props.navigation.navigate('Clues', {correct: false});
+                this.props.navigation.navigate('Clues', {correct: false, clueNumber: this.state.clueNumber});
                 //  console.log('error in fetch catch ', err);
             })
         })
@@ -164,13 +159,23 @@ export default class CameraTest extends Component {
 
     render() {
         if (this.state.captured){
-            return(<View>
-
+            return(<View style={{flex: 1, backgroundColor: '#026978',display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <Text>Thinking...</Text>
                 <Image
                     source={{uri: this.state.image.path}}
                     style={{width: 300, height: 300}}
                 />
-                <Text>Thinking...</Text>
+                <ActivityIndicator
+                    style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: 8,
+                    }}
+                    size="large"
+                    color="#FCB456"
+                    animating={this.state.animating}
+                />
+
             </View>
 
             )
@@ -188,6 +193,8 @@ export default class CameraTest extends Component {
                     <Image source={require('../images/outsidelandsmill.png')}></Image>
 
                 </Camera>
+
+
             </TouchableOpacity>
         )}
     }
