@@ -20,8 +20,7 @@ export default class MusicTest extends Component {
     finished: false,
     audioPath: AudioUtils.DocumentDirectoryPath + '/test.aac',
     hasPermission: undefined,
-    goal: '',
-    currentClue: ''
+    goal: ''
   };
   prepareRecordingPath(audioPath){
     AudioRecorder.prepareRecordingAtPath(audioPath, {
@@ -37,7 +36,7 @@ export default class MusicTest extends Component {
         // console.log('event passed was ', this.props.navigation.state.params.event);
       this.setState({
         goal: this.props.navigation.state.params.goal,
-        currentClue: this.props.navigation.state.params.clue
+        currentClue: this.props.navigation.state.params.clueNumber
       })
     }
 componentDidMount() {
