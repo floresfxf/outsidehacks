@@ -35,6 +35,8 @@ class Clues extends React.Component {
     this.state = {
       dataSource: dataSource.cloneWithPages(PAGES),
       currentClue: 0,
+      openCamera: false,
+      openMic: false,
       finished: false,
       clues: [
           {hint: 'Although you might not be sober, record a song that is', answer: 'Sober', type:'Music'},
@@ -48,7 +50,7 @@ class Clues extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
         //if the photo they took was correct, increment current page
         if(this.props.navigation.state.params) {
             if(this.props.navigation.state.params.correct){
@@ -67,12 +69,20 @@ class Clues extends React.Component {
 }
 
     onAttemptAnswer(){
+        if(this.state.clues[this.state.currentClue].type === 'Camera'){
+            this.setState({openCamera: true})
+        } else if(this.state.clues[this.state.currentClue].type === 'Audio'){
+            this.setState({openMic: false})
+        }
+
         var clueType = this.state.clues[this.state.currentClue].type;
         this.props.navigation.navigate(clueType, {goal: this.state.clues[this.state.currentClue].answer})
     }
 
   render() {
     return (
+        // {this.state.openMic ? <Music /> : null}
+        // {this.state.openMic ? <CameraTest /> : null}
       <View>
           <View style={styles.container}>
               <Image source={require('../images/background.png')}>

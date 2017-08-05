@@ -36,7 +36,7 @@ export default class CameraTest extends Component {
         this.state = {
             captured: false,
             image: {},
-            goal: ''
+            goal: '',
         }
     }
 
@@ -54,12 +54,13 @@ export default class CameraTest extends Component {
     }
 
     findSteve() {
-        console.log('picture captures');
+        console.log('find steve  captures');
         this.camera.capture()
         .then((data) => {
+            this.setState({captured: true});
             var userId = '123456';
             var clueNumber = '5';
-            let apiUrl = 'http://8ddc3c1b.ngrok.io/api/matchSteve';//'https://outside-hacks.herokuapp.com/api/recognizeCelebs'//'http://235b8ad9.ngrok.io/api/recognizeCelebs';
+            let apiUrl = 'http://8ddc3c1b.ngrok.io/api/matchSteve';
             let formData = new FormData();
             formData.append('photo', {
                 uri: data.path,
@@ -78,34 +79,34 @@ export default class CameraTest extends Component {
             axios.post(apiUrl, formData)
             .then((response)=> {
                 //NEED TO CHECK IF THE FOUDN CELEBRITY IS THE RIGHT ONE
-                //console.log('axios response ', response.data);
+                console.log('axios response from findsteve', response.data);
                 if(response.data.match){
-
+                    console.log('matched steve')
                     alert('you got it')
                     //    this.setState({correct: true})
                     this.props.navigation.navigate('Clues', {correct: true}); //{result: this.state.currentPage})
 
                 } else {
+                    console.log('did nto match steve')
                     alert(`Sorry that was not ${this.state.goal}`)
                     this.pro7ps.navigation.navigate('Clues', {correct: false})//false});
                 }
                 //    alert('response from image capture good')
             })
             .catch((err)=>{
-                // alert('you got it')
-            //    this.setState({correct: true})
+                console.log('error matching steve', err)
                 this.props.navigation.navigate('Clues', {correct: false})
             })
         })
     }
 
     takeCelebrityPicture() {
-        console.log('picture captures');
+        console.log('celebritypicture captures');
         this.camera.capture()
         .then((data) => {
             var userId = '123456';
             var clueNumber = '5';
-            let apiUrl = 'http://8ddc3c1b.ngrok.io/api/recognizeCelebs';//'https://outside-hacks.herokuapp.com/api/recognizeCelebs'//'http://235b8ad9.ngrok.io/api/recognizeCelebs';
+            let apiUrl = 'http://8ddc3c1b.ngrok.io/api/recognizeCelebs';
             let formData = new FormData();
             formData.append('photo', {
                 uri: data.path,
@@ -124,20 +125,22 @@ export default class CameraTest extends Component {
             axios.post(apiUrl, formData)
             .then((response)=> {
                 //NEED TO CHECK IF THE FOUDN CELEBRITY IS THE RIGHT ONE
-                //console.log('axios response ', response.data);
+                console.log('axios response from find celebrity ', response.data);
                 if(response.data.CelebrityFaces.length && response.data.CelebrityFaces.length===0){
                     if(response.data.CelebrityFaces[0].Name.toUpperCase() === this.state.goal.toUpperCase()){
-                        alert('you got it')
-                        //    this.setState({correct: true})
-                        this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1}); //{result: this.state.currentPage})
+                        //alert('you got it')
+                        console.log('successful photo capture, correct image')
+                        this.props.navigation.navigate('Clues', {correct: true});
                     } else {
-                        alert(`Sorry that was not ${this.state.goal}`)
-                        this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
+                        console.log('incorrect celebrity photo')
+                        //alert(`Sorry that was not ${this.state.goal}`)
+                        this.props.navigation.navigate('Clues', {correct: false})//false});
 
                     }
                 } else {
-                    alert(`Sorry that was not ${this.state.goal}`)
-                    this.pro7ps.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
+                    console.log("no celebrities found")
+                    //alert(`Sorry that was not ${this.state.goal}`)
+                    this.props.navigation.navigate('Clues', {correct: false})//false});
                 }
                 //    alert('response from image capture good')
             })
@@ -148,27 +151,32 @@ export default class CameraTest extends Component {
             // })
             .catch(err => {
                 alert('Sorry! There was an error');
+                console.log('error matching celebrity in axios', err)
                 this.props.navigation.navigate('Clues', {correct: false});
                 //  console.log('error in fetch catch ', err);
             })
         })
         .catch(err => {
-            console.log('unable t take photo');
+            console.log('unable t take celebrit photo', err);
             alert('unable to take photo')
         })
     }
 
     render() {
         if (this.state.captured){
-            return(
+            return(<View>
+
                 <Image
                     source={{uri: this.state.image.path}}
                     style={{width: 300, height: 300}}
                 />
+                <Text>Thinking...</Text>
+            </View>
+
             )
         }
         return (
-            <TouchableOpacity style={{position: 'absolute', borderWidth: 1, borderColor: 'white', height: '100%', width: '100%'}} onPress={this.props.navigation.state.params.goal == 'Steve' ? ()=> this.findSteve : () =>this.takeCelebrityPicture()}>
+            <TouchableOpacity style={{position: 'absolute', borderWidth: 1, borderColor: 'white', height: '100%', width: '100%'}} onPress={this.props.navigation.state.params.goal == 'Steve' ? this.findSteve.bind(this) : this.takeCelebrityPicture.bind(this)}>
                 <Camera
                     ref={(cam) => {
                         this.camera = cam;
@@ -177,12 +185,7 @@ export default class CameraTest extends Component {
                     captureTarget={Camera.constants.CaptureTarget.disk}
                     style={styles.preview}
                     aspect={Camera.constants.Aspect.fill}>
-
-
-
                     <Image source={require('../images/outsidelandsmill.png')}></Image>
-
-                    {/* <Text style={styles.capture} onPress={this.takeCelebrityPicture.bind(this)}>[CAPTURE]</Text> */}
 
                 </Camera>
             </TouchableOpacity>
