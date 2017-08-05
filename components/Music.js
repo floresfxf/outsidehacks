@@ -163,7 +163,7 @@ _checkPermission() {
     .then((audio)=>{
       console.log("RNFS", audio);
       axios({
-         url: 'http://235b8ad9.ngrok.io/audio',
+         url: 'http://8ddc3c1b.ngrok.io/audio',
          method: "POST",
          data:{
            audio: audio
@@ -173,12 +173,12 @@ _checkPermission() {
           },
        })
       .then((response)=> {
-          console.log('axios response ', response);
+          //console.log('axios response ', response);
         //   this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1});
           return response.json();
       })
       .then(responsejson => {
-          console.log('response json is', responsejson);
+          //console.log('response json is', responsejson);
         //   alert(`${responsejson.title}`)
         //   if(true){
           if(responsejson.success && (this.state.goal.toUpperCase() === responsejson.title.toUpperCase())){
@@ -200,13 +200,13 @@ _checkPermission() {
       })
       .catch(err => {
         // console.log('error in fetch catch ', err);
-         alert('error', err)
+         alert('error in axios audio', err)
         this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
       })
     })
     .catch((err)=>{
         console.log("ERROR RNFS", err)
-        
+
         this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
     })
   }
