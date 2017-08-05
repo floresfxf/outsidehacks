@@ -128,7 +128,7 @@ class Clues extends React.Component {
                 {this.state.clues[this.state.currentClue].type === 'Camera' ?
                     <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
                     </Image> :
-                    <Image source={require('../images/mic2.jpg')} style={{height: 50, width: 50}}>
+                    <Image source={require('../images/record_icon.jpg')} style={{height: 50, width: 50}}>
                     </Image>
                 }
 

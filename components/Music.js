@@ -80,7 +80,7 @@ _checkPermission() {
     var style = (active) ? styles.activeButtonText : styles.buttonText;
     return (
       <TouchableHighlight style={styles.button} onPress={onPress}>
-        <View style={{
+        {/* <View style={{
           marginBottom: 10,
           marginTop: 10,
           borderRadius: 200,
@@ -92,7 +92,8 @@ _checkPermission() {
           width: 250,
           // opacity: .5
           }}>
-        </View>
+        </View> */}
+        <Image style={{height: 250, width: 250,}} source={require('../images/record_icon.jpg')} />
       </TouchableHighlight>
     );
   }
@@ -163,7 +164,7 @@ _checkPermission() {
     .then((audio)=>{
       console.log("RNFS", audio);
       axios({
-         url: 'http://8ddc3c1b.ngrok.io/audio',
+         url: 'http://localhost:3000/audio',
          method: "POST",
          data:{
            audio: audio
@@ -172,12 +173,10 @@ _checkPermission() {
            "Content-type": "application/json",
           },
        })
-      .then((response)=> {
+      .then((responsejson)=> {
           //console.log('axios response ', response);
         //   this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1});
-          return response.json();
-      })
-      .then(responsejson => {
+
           //console.log('response json is', responsejson);
         //   alert(`${responsejson.title}`)
         //   if(true){
@@ -201,6 +200,7 @@ _checkPermission() {
       .catch(err => {
         // console.log('error in fetch catch ', err);
          alert('error in axios audio', err)
+         console.log(err);
         this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
       })
     })
