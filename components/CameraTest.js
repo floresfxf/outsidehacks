@@ -43,8 +43,7 @@ export default class CameraTest extends Component {
     componentWillMount() {
         // console.log('event passed was ', this.props.navigation.state.params.event);
         this.setState({
-            goal: this.props.navigation.state.params.goal,
-            currentClue: this.props.navigation.state.params.clue
+            goal: this.props.navigation.state.params.goal
         })
     }
 
@@ -60,7 +59,7 @@ export default class CameraTest extends Component {
         .then((data) => {
             var userId = '123456';
             var clueNumber = '5';
-            let apiUrl = 'https://235b8ad9.ngrok.io/api/matchSteve';//'https://outside-hacks.herokuapp.com/api/recognizeCelebs'//'http://235b8ad9.ngrok.io/api/recognizeCelebs';
+            let apiUrl = 'http://8ddc3c1b.ngrok.io/api/matchSteve';//'https://outside-hacks.herokuapp.com/api/recognizeCelebs'//'http://235b8ad9.ngrok.io/api/recognizeCelebs';
             let formData = new FormData();
             formData.append('photo', {
                 uri: data.path,
@@ -79,23 +78,23 @@ export default class CameraTest extends Component {
             axios.post(apiUrl, formData)
             .then((response)=> {
                 //NEED TO CHECK IF THE FOUDN CELEBRITY IS THE RIGHT ONE
-                console.log('axios response ', response.data);
+                //console.log('axios response ', response.data);
                 if(response.data.match){
 
                     alert('you got it')
                     //    this.setState({correct: true})
-                    this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1}); //{result: this.state.currentPage})
+                    this.props.navigation.navigate('Clues', {correct: true}); //{result: this.state.currentPage})
 
                 } else {
                     alert(`Sorry that was not ${this.state.goal}`)
-                    this.pro7ps.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})//false});
+                    this.pro7ps.navigation.navigate('Clues', {correct: false})//false});
                 }
                 //    alert('response from image capture good')
             })
             .catch((err)=>{
-                alert('you got it')
+                // alert('you got it')
             //    this.setState({correct: true})
-                this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1})
+                this.props.navigation.navigate('Clues', {correct: false})
             })
         })
     }
@@ -106,7 +105,7 @@ export default class CameraTest extends Component {
         .then((data) => {
             var userId = '123456';
             var clueNumber = '5';
-            let apiUrl = 'https://235b8ad9.ngrok.io/api/recognizeCelebs';//'https://outside-hacks.herokuapp.com/api/recognizeCelebs'//'http://235b8ad9.ngrok.io/api/recognizeCelebs';
+            let apiUrl = 'http://8ddc3c1b.ngrok.io/api/recognizeCelebs';//'https://outside-hacks.herokuapp.com/api/recognizeCelebs'//'http://235b8ad9.ngrok.io/api/recognizeCelebs';
             let formData = new FormData();
             formData.append('photo', {
                 uri: data.path,
@@ -125,7 +124,7 @@ export default class CameraTest extends Component {
             axios.post(apiUrl, formData)
             .then((response)=> {
                 //NEED TO CHECK IF THE FOUDN CELEBRITY IS THE RIGHT ONE
-                console.log('axios response ', response.data);
+                //console.log('axios response ', response.data);
                 if(response.data.CelebrityFaces.length && response.data.CelebrityFaces.length===0){
                     if(response.data.CelebrityFaces[0].Name.toUpperCase() === this.state.goal.toUpperCase()){
                         alert('you got it')

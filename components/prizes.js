@@ -82,7 +82,7 @@ class Prizes extends React.Component {
                     // <Col
                     //   size={5}
                     //   style={styles.col}>
-                      <View style={styles.card} >
+                      <View style={styles.card} key={i} >
                           <Text style={[styles.cardTitle, {textAlign: 'center'}]} >{l.name}</Text>
                         <Image style={{marginLeft: 18}} source={l.image} />
 

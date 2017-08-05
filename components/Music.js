@@ -80,7 +80,7 @@ _checkPermission() {
     var style = (active) ? styles.activeButtonText : styles.buttonText;
     return (
       <TouchableHighlight style={styles.button} onPress={onPress}>
-        <View style={{
+        {/* <View style={{
           marginBottom: 10,
           marginTop: 10,
           borderRadius: 200,
@@ -92,7 +92,8 @@ _checkPermission() {
           width: 250,
           // opacity: .5
           }}>
-        </View>
+        </View> */}
+        <Image style={{height: 250, width: 250,}} source={require('../images/record_icon.jpg')} />
       </TouchableHighlight>
     );
   }
@@ -172,13 +173,11 @@ _checkPermission() {
            "Content-type": "application/json",
           },
        })
-      .then((response)=> {
-          console.log('axios response ', response);
+      .then((responsejson)=> {
+          //console.log('axios response ', response);
         //   this.props.navigation.navigate('Clues', {correct: true, newClueNumber: this.state.currentClue + 1});
-          return response.json();
-      })
-      .then(responsejson => {
-          console.log('response json is', responsejson);
+
+          //console.log('response json is', responsejson);
         //   alert(`${responsejson.title}`)
         //   if(true){
           if(responsejson.success && (this.state.goal.toUpperCase() === responsejson.title.toUpperCase())){
@@ -200,7 +199,8 @@ _checkPermission() {
       })
       .catch(err => {
         // console.log('error in fetch catch ', err);
-         alert('error', err)
+         alert('error in axios audio', err)
+         console.log(err);
         this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
       })
     })

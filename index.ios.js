@@ -49,13 +49,13 @@ class HomeScreen extends Component {
       this.setState({ visibleModal: null });
   }
 
-  _renderButton = (text, onPress) => (
-  <TouchableOpacity onPress={onPress}>
-      <View>
-          <Text>{text}</Text>
-      </View>
-  </TouchableOpacity>
-);
+//   _renderButton = (text, onPress) => (
+//   <TouchableOpacity onPress={onPress}>
+//       <View>
+//           <Text>{text}</Text>
+//       </View>
+//   </TouchableOpacity>
+// );
 
   render() {
     return (

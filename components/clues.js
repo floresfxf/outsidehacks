@@ -34,49 +34,48 @@ class Clues extends React.Component {
     });
     this.state = {
       dataSource: dataSource.cloneWithPages(PAGES),
-      currentPage: 0,
-      solutions: ['Sober', 'Steve', 'Lars Ulrich', 'Talking Body', 'Action Bronson']//1. Sober by lord, 2. water bottle, 3. steve, 4. Lars Ulrich, 5. idk
-    //   ['Sober', 'Steve', 'Lars Ulrich', 'Talking Body', 'Action Bronson']
+      currentClue: 0,
+      finished: false,
+      clues: [
+          {hint: 'Although you might not be sober, record a song that is', answer: 'Sober', type:'Music'},
+          {hint: 'Find a dancing bearded man... Hint: see the OutsideHack Booth', answer: 'Steve', type: 'Camera'},
+           {hint: 'Patel Nut on Union Street is his favorite place to eat... can you guess who it is?', answer: 'Lars Ulrich', type: 'Camera'},
+            {hint: 'What are we talking about? Body... Obviously', answer: 'Talking Body', type: 'Music'},
+             {hint: 'He raps, he cooks, loves to have fun, and is performing at OutsideLands 2017', answer: 'Action Bronson', type: 'Camera'}],
+
+      solutions: ['Sober', 'Steve', 'Lars Ulrich', 'Talking Body', 'Action Bronson']
 
     }
-    // require('../images/camera-flat.png')
   }
 
   componentDidMount() {
         //if the photo they took was correct, increment current page
         if(this.props.navigation.state.params) {
-            // if(this.props.navigation.state.params.correct){
-                this.setState({currentPage: this.props.navigation.state.params.newClueNumber}, function() {
-                    if(this.props.navigation.state.params.newClueNumber === 5) {
-                        alert('GREAT JOB!')
-                    } else {
-                        // alert(`you are on step ${this.props.navigation.state.params.newClueNumber}`)
-                    }
-                    // alert(`${this.props.navigation.state.params.newClueNumber}`)
-                })
+            if(this.props.navigation.state.params.correct){
+                var nextClue = this.state.currentClue + 1;
+                if(nextClue === 5){
+                    alert('that was correct! YOU WIN')
+                } else {
+                    alert('that was correct, keep going!')
+                }
+                this.setState({currentClue: nextClue})
+            }else {
+                alert('Sorry! That was wrong!')
+            }
 
         }
 }
-            //         if(this.state.currentPage <5){
-            //             alert( `you are on step ${this.state.currentPage}`)
-            //             // this.setState({currentPage: this.state.currentPage + 1})
-            //         } else {
-            //             alert('GOOD JOB YOU WON')
-            //         }
-            //     })
-            // 1. Sober by lord, 2. water bottle, 3. steve, 4. Lars Ulrich, 5. idk
-            // } else {
-            //     console.log('do nothing');
-            // }
 
+    onAttemptAnswer(){
+        var clueType = this.state.clues[this.state.currentClue].type;
+        this.props.navigation.navigate(clueType, {goal: this.state.clues[this.state.currentClue].answer})
+    }
 
   render() {
     return (
       <View>
           <View style={styles.container}>
               <Image source={require('../images/background.png')}>
-
-
                   <View style={styles.row}>
                       <CluesAppBar navigation={this.props.navigation} />
                   </View>
@@ -84,21 +83,17 @@ class Clues extends React.Component {
                       <Text style={{backgroundColor: 'transparent', textAlign: 'center', marginTop: -30, marginBottom: 10}}>Progress</Text>
                       <StepIndicator
                           customStyles={customStyles}
-                          currentPosition={this.state.currentPage}
+                          currentPosition={this.state.currentClue}
+                          labels={this.state.solutions}
+                          labelSize={5}
+                          stepCount={this.state.clues.length}
                       />
                   </View>
-                  {/* <Button
-                      backgroundColor='#000'
-                      borderRadius={100}
-                      buttonStyle={{width: 50}}
-                      title='+'
-                      onPress={() => this.props.navigation.navigate('Camera', {goal: 'NAME OF PERSON', clue: this.state.currentPage})}
-                  /> */}
 
                   <ViewPager
                       dataSource={this.state.dataSource}
                       renderPage={this.renderViewPagerPage}
-                      onChangePage={(page) => {this.setState({currentPage:page})}}
+                      onChangePage={(page) => {this.setState({currentClue:page})}}
             />
         </Image>
       </View>
@@ -107,25 +102,31 @@ class Clues extends React.Component {
   }
   renderViewPagerPage = (data) => {
     return(<View style={styles.page}>
-        {(this.state.currentPage === 0) ? <Image source={require('../images/clue1.png')}/> : <View></View>}
-        {(this.state.currentPage === 1) ? <Image source={require('../images/clue3.png')}/> : <View></View>}
-        {(this.state.currentPage === 2) ? <Image source={require('../images/clue4.png')}/> : <View></View>}
-        {(this.state.currentPage === 3) ? <Image source={require('../images/clue5.png')}/> : <View></View>}
-        {(this.state.currentPage === 4) ? <Image source={require('../images/clue2.png')}/> : <View></View>}
-        <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
-        fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text>
+
+        {/* {(this.state.currentClue === 0) ? <Image source={require('../images/clue1.png')}/> : <View></View>}
+            {(this.state.currentClue === 1) ? <Image source={require('../images/clue3.png')}/> : <View></View>}
+            {(this.state.currentClue === 2) ? <Image source={require('../images/clue4.png')}/> : <View></View>}
+            {(this.state.currentClue === 3) ? <Image source={require('../images/clue5.png')}/> : <View></View>}
+        {(this.state.currentClue === 4) ? <Image source={require('../images/clue2.png')}/> : <View></View>} */}
+
+        {/* <Image source={require('../images/davetalks_480.png')} /> */}
+        <View><Text>{this.state.clues[this.state.currentClue].hint}</Text></View>
+        {/* <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
+        fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text> */}
         <View>
-            
-            {(this.state.solutions[this.state.currentPage] === 'Sober' || this.state.solutions[this.state.currentPage] === 'Talking Body') ?
-                <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Music',
-                {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
+
+            <TouchableOpacity
+                style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={this.onAttemptAnswer.bind(this)}>
+
+                {this.state.clues[this.state.currentClue].type === 'Camera' ?
                     <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
+                    </Image> :
+                    <Image source={require('../images/record_icon.jpg')} style={{height: 50, width: 50}}>
                     </Image>
-                </TouchableOpacity> : <TouchableOpacity style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={() => this.props.navigation.navigate('Camera', {goal: this.state.solutions[this.state.currentPage]  , clue: this.state.currentPage})}>
-                    <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
-                    </Image>
-                </TouchableOpacity>}
-      </View>
+                }
+
+            </TouchableOpacity>
+        </View>
     </View>
     )
   }
@@ -153,7 +154,7 @@ const customStyles = {
   stepIndicatorLabelFinishedColor: '#FCB456',
   stepIndicatorLabelUnFinishedColor: '#026978',
   labelColor: '#026978',
-  labelSize: 25,
+
   currentStepLabelColor: '#026978'
 }
 
