@@ -163,7 +163,7 @@ _checkPermission() {
     .then((audio)=>{
       console.log("RNFS", audio);
       axios({
-         url: 'http://235b8ad9.ngrok.io/audio',
+         url: 'http://localhost:3000/audio',
          method: "POST",
          data:{
            audio: audio
@@ -206,7 +206,7 @@ _checkPermission() {
     })
     .catch((err)=>{
         console.log("ERROR RNFS", err)
-        
+
         this.props.navigation.navigate('Clues', {correct: false, newClueNumber: this.state.currentClue})
     })
   }

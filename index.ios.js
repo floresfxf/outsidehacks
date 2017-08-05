@@ -23,7 +23,7 @@ import Vendor from './components/vendor';
 import Music from './components/Music';
 import { Button, FormLabel, FormInput } from 'react-native-elements';
 import Modal from 'react-native-modal';
-console.disableYellowBox = true;
+
 class HomeScreen extends Component {
   constructor(){
     super()
@@ -40,7 +40,7 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('Clues');
   }
 
-  login2() {
+  vendorLogin() {
     this.setState({ visibleModal: null });
     this.props.navigation.navigate('Vendor');
   }
@@ -59,28 +59,32 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <Image source={require('./images/login.png')} style={styles.container} >
+      <Image source={require('./images/login.png')} style={styles.backgroundImage} >
           <Image
               source={{uri: 'https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/271/461/datas/original.png'}}
-              style={styles.hacksLogo}></Image>
+              style={styles.hacksLogo}/>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={() => this.setState({ visibleModal: 1 })} style={styles.loginButton}>
+                <Text style={styles.text}>RANGER!</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.setState({ visibleModal: 2 })} style={styles.loginButton}>
+                <Text style={styles.text}>VENDOR!</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.logoContainer}>
+            <Text style={styles.instructions}>Hey! Im Ranger Dave, pick one to log in!</Text>
+            <Image
+                source={require('./images/onlydave.png')}
+                style={styles.dave}/>
 
-          <TouchableOpacity onPress={() => this.setState({ visibleModal: 1 })} style={{backgroundColor: '#F26051', padding: 5, marginBottom: 10, borderRadius: 5, marginLeft: -255}}>
-              <Text style={styles.text}>RANGER!</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({ visibleModal: 2 })} style={{backgroundColor: '#F26051', padding: 5, marginTop: 10, borderRadius: 5, marginLeft: -255}}>
-              <Text style={styles.text}>VENDOR!</Text>
-          </TouchableOpacity>
-          <Image
-              source={require('./images/onlydave.png')}
-              style={styles.dave}></Image>
-          <Text style={styles.instructions}>Hey! Im Ranger Dave, pick one to log in!</Text>
+          </View>
 
 
           <Modal
               isVisible={this.state.visibleModal === 1}
               animationOutTiming= {1}
               backdropColor={'#FAB44B'} backdropOpacity={1}>
-              <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
+              <View style={styles.modalContainer}>
                   <FormLabel labelStyle={styles.form} >Username</FormLabel>
                   <FormInput inputStyle={styles.input} placeholder="Enter Username" onChangeText={(text) => {this.descripText(text)}}/>
                   <FormLabel labelStyle={styles.form} >Password</FormLabel>
@@ -102,14 +106,14 @@ class HomeScreen extends Component {
               transparent={true}
               backdropColor={'#FAB44B'}
               backdropOpacity={1.00}>
-              <View style={{justifyContent: 'center', alignItems: 'center', width: 350}}>
+              <View style={styles.modalContainer}>
                   <FormLabel labelStyle={styles.form}  >Username</FormLabel>
                   <FormInput inputStyle={styles.input}  placeholder="Enter Company Name" onChangeText={(text) => {this.descripText(text)}}/>
                   <FormLabel labelStyle={styles.form} >Password</FormLabel>
                   <FormInput placeholder="Enter Password"
                       secureTextEntry={true}
                       onChangeText={(text) => {this.descripText(text)}}/>
-                  <TouchableOpacity onPress={() => {this.login2()}}>
+                  <TouchableOpacity onPress={() => {this.vendorLogin()}}>
                       <Text style={styles.text} >Log In</Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => {this.Cancel()}}>
@@ -163,11 +167,35 @@ export default hackTester = StackNavigator({
 }, {headerMode:'screen', initialRouteName: 'Home'});
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    // resizeMode: 'cover',
+    backgroundColor:'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 350
+
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
-    // display: 'flex',
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  logoContainer:{
+    display: 'flex',
+    flexDirection: 'row'
   },
   text: {
     fontFamily: 'American Typewriter',
@@ -178,11 +206,11 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   hacksLogo: {
-    height: 300,
+    height: 200,
     width: 300,
-    marginRight: 260,
-    marginTop: -700,
-    marginBottom: -30,
+    // marginRight: 260,
+    // marginTop: -700,
+    // marginBottom: -30,
   },
   form: {
     color: '#f26051',
@@ -196,12 +224,12 @@ const styles = StyleSheet.create({
     color: '#00485A'
   },
   dave: {
-    alignItems: 'flex-end',
+    // alignItems: 'flex-end',
     height: 138,
     width: 125,
-    marginTop: 60,
-    marginRight: 50,
-    marginBottom: -50,
+    // marginTop: 60,
+    // marginRight: 50,
+    // marginBottom: -50,
   },
   instructions: {
     color: '#00485A',
@@ -211,10 +239,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: 'transparent',
     fontSize: 20,
-    marginLeft: -380,
-    height: 210,
+    // marginLeft: -380,
+    // marginTop: -80,
+    height: 200,
     width: 200,
-    marginTop: -80,
+    textAlign: 'center'
+
+  },
+  loginButton: {
+    backgroundColor: '#F26051',
+    padding: 5,
+    marginBottom: 10,
+    borderRadius: 5,
   }
 });
 
