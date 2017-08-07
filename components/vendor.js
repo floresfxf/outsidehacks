@@ -34,25 +34,25 @@ class Vendor extends React.Component {
      <Content>
        <List>
          <ListItem style={styles.listItems} itemHeader first>
-           <Text style={styles.title} >Giveaway Options</Text>
+           <Text style={styles.title}>Giveaway Options</Text>
          </ListItem>
          <ListItem >
-         <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')}>
+         <TouchableOpacity onPress={() => this.props.navigation.navigate('vendorCamera')}>
            <Text style={styles.text}>Caps</Text>
            </TouchableOpacity>
          </ListItem>
          <ListItem>
-         <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')}>
+         <TouchableOpacity onPress={() => this.props.navigation.navigate('vendorCamera')}>
            <Text style={styles.text}>T-shirts</Text>
            </TouchableOpacity>
          </ListItem>
          <ListItem>
-         <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')}>
+         <TouchableOpacity onPress={() => this.props.navigation.navigate('vendorCamera')}>
            <Text style={styles.text}>Ticket Upgrades</Text>
            </TouchableOpacity>
          </ListItem>
          <ListItem>
-         <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')}>
+         <TouchableOpacity onPress={() => this.props.navigation.navigate('vendorCamera')}>
            <Text style={styles.text}>Back Stage Passes</Text>
            </TouchableOpacity>
          </ListItem>

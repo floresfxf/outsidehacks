@@ -10,22 +10,23 @@ import {
    Alert,
    Button,
    Image,
+   Transforms,
    RefreshControl
 
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Header } from 'react-native-elements';
-import Modal from 'react-native-modal';
+import { Header, Icon } from 'react-native-elements';
 
 const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
     return (
-        <View style={styles.row}>
+        <View>
           <Text style={{
                 color: '#00485A',
                 fontFamily: 'American Typewriter',
                 fontWeight: 'bold',
-                fontSize: 25,
-              marginLeft: -100}}>Clues</Text>
+                fontSize: 30,
+                marginLeft: -90}}
+                >Clues</Text>
         </View>
     )
 };
@@ -33,11 +34,12 @@ const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
 const MyCustomLeftComponent = ({load}) => {
     return (
         <TouchableOpacity onPress={() => load()}>
-        <Text style={{
-              color: '#00485A',
-              fontFamily: 'American Typewriter',
-              fontWeight: 'bold',
-              fontSize: 18}}>Back</Text>
+              <Icon
+              name='exit-to-app'
+              color='#00485A'
+              size={28}
+              containerStyle={{transform: [{ rotate: '180deg'}]}}
+              />
         </TouchableOpacity>
     )
 };
@@ -45,12 +47,12 @@ const MyCustomLeftComponent = ({load}) => {
 const MyCustomRightComponent = ({load2}) => {
     return (
         <TouchableOpacity onPress={() => load2()}>
-            <Text style={{
-                  color: '#00485A',
-                  fontFamily: 'American Typewriter',
-                  fontWeight: 'bold',
-                  fontSize: 18,
-                  marginLeft: -140}}>Prizes</Text>
+            <Icon
+              name='card-giftcard'
+              color='#00485A'
+              size={32}
+              containerStyle= {{marginLeft: -225}}
+            />
         </TouchableOpacity>
     )
 };
@@ -87,18 +89,8 @@ export default CluesAppBar;
 
 const styles = StyleSheet.create({
     AppBar: {
-        display:'flex',
         flex:1,
         backgroundColor:'#63BABD',
         height: 71
-    },
-    row: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    titleText: {
-        color: '#fff',
-        fontSize: 25,
-        fontWeight: '400'
     },
 });

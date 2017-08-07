@@ -1,13 +1,8 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component,} from 'react';
 
 import {
   AppRegistry,
+  Dimensions,
   StyleSheet,
   Text,
   View,
@@ -21,8 +16,11 @@ import Prizes from './components/prizes';
 import Clues from './components/clues';
 import Vendor from './components/vendor';
 import Music from './components/Music';
+import vendorCamera from './components/vendorCamera'
 import { Button, FormLabel, FormInput } from 'react-native-elements';
 import Modal from 'react-native-modal';
+
+let WINDOW_HEIGHT = Dimensions.get('window').height;
 
 class HomeScreen extends Component {
   constructor(){
@@ -59,7 +57,7 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <Image source={require('./images/login.png')} style={styles.backgroundImage} >
+      <Image source={require('./images/login.png')} style={styles.backgroundImage}>
           <Image
               source={{uri: 'https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/271/461/datas/original.png'}}
               style={styles.hacksLogo}/>
@@ -76,10 +74,7 @@ class HomeScreen extends Component {
             <Image
                 source={require('./images/onlydave.png')}
                 style={styles.dave}/>
-
           </View>
-
-
           <Modal
               isVisible={this.state.visibleModal === 1}
               animationOutTiming= {1}
@@ -99,7 +94,6 @@ class HomeScreen extends Component {
                   </TouchableOpacity>
               </View>
           </Modal>
-
           <Modal
               isVisible={this.state.visibleModal === 2}
               backdropOpacity={1}
@@ -107,9 +101,9 @@ class HomeScreen extends Component {
               backdropColor={'#FAB44B'}
               backdropOpacity={1.00}>
               <View style={styles.modalContainer}>
-                  <FormLabel labelStyle={styles.form}  >Username</FormLabel>
-                  <FormInput inputStyle={styles.input}  placeholder="Enter Company Name" onChangeText={(text) => {this.descripText(text)}}/>
-                  <FormLabel labelStyle={styles.form} >Password</FormLabel>
+                  <FormLabel labelStyle={styles.form}>Username</FormLabel>
+                  <FormInput inputStyle={styles.input} placeholder="Enter Company Name" onChangeText={(text) => {this.descripText(text)}}/>
+                  <FormLabel labelStyle={styles.form}>Password</FormLabel>
                   <FormInput placeholder="Enter Password"
                       secureTextEntry={true}
                       onChangeText={(text) => {this.descripText(text)}}/>
@@ -121,7 +115,7 @@ class HomeScreen extends Component {
                   </TouchableOpacity>
               </View>
           </Modal>
-      </Image>
+        </Image>
     );
   }
 }
@@ -158,6 +152,12 @@ export default hackTester = StackNavigator({
           header:null
       }
   },
+  vendorCamera: {
+    screen: vendorCamera,
+    navigationOptions: {
+          header:null
+      }
+  },
   Music: {
     screen: Music,
     navigationOptions: {
@@ -171,10 +171,12 @@ const styles = StyleSheet.create({
     flex: 1,
     width: undefined,
     height: undefined,
-    // resizeMode: 'cover',
-    backgroundColor:'transparent',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  container: {
+      backgroundColor: '#fff',
+      height: WINDOW_HEIGHT
   },
   modalContainer: {
     justifyContent: 'center',
@@ -208,9 +210,6 @@ const styles = StyleSheet.create({
   hacksLogo: {
     height: 200,
     width: 300,
-    // marginRight: 260,
-    // marginTop: -700,
-    // marginBottom: -30,
   },
   form: {
     color: '#f26051',
@@ -224,12 +223,8 @@ const styles = StyleSheet.create({
     color: '#00485A'
   },
   dave: {
-    // alignItems: 'flex-end',
     height: 138,
     width: 125,
-    // marginTop: 60,
-    // marginRight: 50,
-    // marginBottom: -50,
   },
   instructions: {
     color: '#00485A',
@@ -239,8 +234,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: 'transparent',
     fontSize: 20,
-    // marginLeft: -380,
-    // marginTop: -80,
     height: 200,
     width: 200,
     textAlign: 'center'

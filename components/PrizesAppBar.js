@@ -14,7 +14,7 @@ import {
 
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Header } from 'react-native-elements';
+import { Header, Icon } from 'react-native-elements';
 
 const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
     return (
@@ -27,10 +27,11 @@ const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
 const MyCustomLeftComponent = ({load}) => {
     return (
         <TouchableOpacity onPress={() => load()}>
-            <Text style={{color: '#00485A',
-            fontFamily: 'American Typewriter',
-            fontWeight: 'bold',
-            fontSize: 18}}>Back</Text>
+          <Icon
+            name='keyboard-arrow-left'
+            color='#00485A'
+            size={32}
+          />
         </TouchableOpacity>
     )
 };
@@ -77,9 +78,8 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         fontFamily: 'American Typewriter',
         fontWeight: 'bold',
-        marginLeft: -90
+        marginLeft: -85
     },
-
     backButton: {
       marginRight: 0,
       padding: 0

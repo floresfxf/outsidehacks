@@ -89,8 +89,8 @@ class Clues extends React.Component {
                       <StepIndicator
                           customStyles={customStyles}
                           currentPosition={this.state.currentClue}
-                          /*Change the labels to this.state.PAGES when done editing app*/
-                          labels={this.state.solutions}
+/*Change the labels to this.state.solutions when to have solutions instead of clue number as headers*/
+                          labels={PAGES}
                           labelSize={5}
                           stepCount={this.state.clues.length}
                       />
@@ -110,36 +110,31 @@ class Clues extends React.Component {
   renderViewPagerPage = (data) => {
     return(<View style={styles.page}>
 
-        {/* {(this.state.currentClue === 0) ? <Image source={require('../images/clue1.png')}/> : <View></View>}
+        {(this.state.currentClue === 0) ? <Image source={require('../images/clue1.png')}/> : <View></View>}
             {(this.state.currentClue === 1) ? <Image source={require('../images/clue3.png')}/> : <View></View>}
             {(this.state.currentClue === 2) ? <Image source={require('../images/clue4.png')}/> : <View></View>}
             {(this.state.currentClue === 3) ? <Image source={require('../images/clue5.png')}/> : <View></View>}
-        {(this.state.currentClue === 4) ? <Image source={require('../images/clue2.png')}/> : <View></View>} */}
+        {(this.state.currentClue === 4) ? <Image source={require('../images/clue2.png')}/> : <View></View>}
 
-        {/* <Image source={require('../images/davetalks_480.png')} /> */}
+        {/* <Image source={require('../images/davetalks_480.png')} />
         <View style={{backgroundColor: 'transparent'}}><Text>{this.state.clues[this.state.currentClue].hint}</Text></View>
-        {/* <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
+        <Text style={{fontFamily: 'American Typewriter', backgroundColor: 'transparent',
         fontWeight: 'bold', color: '#026978', fontSize: 25}}>{data}</Text> */}
         <View>
-
             <TouchableOpacity
                 style={{backgroundColor:'transparent', padding: 8, borderRadius: 90}} onPress={this.onAttemptAnswer.bind(this)}>
-
                 {this.state.clues[this.state.currentClue].type === 'Camera' ?
                     <Image source={require('../images/camera-flat.png')} style={{height: 50, width: 50}}>
                     </Image> :
                     <Image source={require('../images/mic-flat.png')} style={{height: 50, width: 50}}>
                     </Image>
                 }
-
             </TouchableOpacity>
         </View>
     </View>
     )
   }
 }
-
-
 
 const customStyles = {
   stepIndicatorSize: 45,

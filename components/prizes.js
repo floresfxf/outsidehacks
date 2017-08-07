@@ -32,25 +32,25 @@ import Modal from 'react-native-modal';
 
 const list = [
    {
-    name: 'MEET BRONSON',
-    steps: 'Redeem: 5 steps',
+    name: 'Meet Action Bronson',
+    steps: 'Redeem (5)',
     image: require('../images/bronson.jpg')
   }, {
-    name: 'VIP UPGRADE',
-    steps: 'Redeem: 5 steps',
+    name: 'VIP Upgrade',
+    steps: 'Redeem (5)',
     image: require('../images/blueLands.jpg')
   }, {
-    name: 'KAYTRANADA VINYL',
-    steps: 'Redeem: 3 steps',
+    name: 'Kaytranada Vinyl',
+    steps: 'Redeem (3)',
     image: require('../images/images.jpg')
   }, {
-    name: 'HUMANZ Deluxe',
-    steps: 'Redeem: 3 steps',
+    name: 'Humanz Deluxe Edition',
+    steps: 'Redeem (3)',
     image: require('../images/rillaz.jpg')
   },
   {
     name: 'Winelands Discount',
-    steps: 'Redeem: 2 steps',
+    steps: 'Redeem (2)',
     image: require('../images/DRANK.jpg')
   }
 ]
@@ -106,7 +106,7 @@ class Prizes extends React.Component {
                   <Image source={require('../images/code.png')} />
                   </View>
                   <TouchableOpacity onPress={() => {this._hideModal()}}>
-                    <Text style={{marginTop: 10, fontSize: 30, textAlign: 'center'}}>Cancel</Text>
+                    <Text style={{marginTop: 10, fontSize: 30, fontFamily: 'American Typewriter', color: 'white', textAlign: 'center'}}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
               </Modal>

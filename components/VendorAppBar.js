@@ -1,6 +1,7 @@
 import React from 'react';
 import {
    AsyncStorage,
+   Transforms,
    StyleSheet,
    View,
    Text,
@@ -14,7 +15,7 @@ import {
 
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Header } from 'react-native-elements';
+import { Header, Icon } from 'react-native-elements';
 
 const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
     return (
@@ -27,7 +28,12 @@ const MyCustomCenterComponent = ({changeFeed,activeFeed}) => {
 const MyCustomLeftComponent = ({load}) => {
     return (
         <TouchableOpacity onPress={() => load()}>
-            <Text style={styles.backButton}>Back</Text>
+          <Icon
+            name='exit-to-app'
+            color='#00485A'
+            size={32}
+            containerStyle={{transform: [{ rotate: '180deg'}]}}
+          />
         </TouchableOpacity>
     )
 };
@@ -74,7 +80,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         fontFamily: 'American Typewriter',
         fontWeight: 'bold',
-        marginLeft: -60
+        marginLeft: -65
     },
     backButton: {
       color: '#00485A',
