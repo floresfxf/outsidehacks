@@ -11,6 +11,7 @@ We've even added support for vendors who can track inventory of prizes and confi
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See ‘Running Project’ for notes on how to deploy the project on a live system.
 
 **Prerequisites**
+
 Must install node and/or watchman
 ```
 brew install node
@@ -21,16 +22,17 @@ Must have the command react-native in cli
 npm install -g react-native-cli
 ```
 **Running Project**
+
 git clone project
 ```
 git clone https://github.com/floresfxf/outsidehacks
 ```
 cd into project and run
-```
+
 cd /outsidehacks
 npm install
 react-native run-ios
-``` 
+
 Enjoy
 
 ##Built With
