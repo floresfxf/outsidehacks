@@ -7,7 +7,7 @@ Outside Finds is an interactive application written in React Native to enhance t
 Users were tasked with finding certain images or audio clips that would fit the given clue. Once the image or audio clip was verified users would be able to move on to the next clue. The users could then view possible prizes that were redeemable once at a certain step. Each prize has a unique QR code which can be scanned to verify that a user has completed their task(s).
 We've even added support for vendors who can track inventory of prizes and confirm the user’s QR code is accurate.
 
-##Getting Started
+## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See ‘Running Project’ for notes on how to deploy the project on a live system.
 
 **Prerequisites**
@@ -28,15 +28,15 @@ git clone project
 git clone https://github.com/floresfxf/outsidehacks
 ```
 cd into project and run
-
+```
 cd /outsidehacks
 npm install
 react-native run-ios
-
+```
 Enjoy
 
-##Built With
-[React Native](http://www.dropwizard.io/1.0.2/docs/)
+## Built With
+
 * [React Native](https://facebook.github.io/react-native/) - framework used
 * [Express](https://expressjs.com) - web framework used
 * [Amazon S3](https://aws.amazon.com/s3/) - Used to store users images
@@ -45,7 +45,7 @@ Enjoy
 * [Gracenote API](https://developer.gracenote.com) - Used to handle and confirm incoming audio form users
 
 
-##Authors
+## Authors
 * Frankie Flores
 * Pamela Needle 
 * Nikhil Anand
