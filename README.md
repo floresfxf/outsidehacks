@@ -3,7 +3,7 @@
 </a>
 
 # outsidehacks
-Outside Finds is an interactive application written in React Native to enhance the music festival, Outside Lands, experience for all festival goers by creating a scavenger hunt where users must take pictures and record audio of certain areas throughout the 1 mi2 venue. This allowed users to both collect memories of the festival and be able to redeem them for prizes.
+Outside Finds is an interactive application written in React Native to enhance the music festival, Outside Lands, experience for all festival goers by creating a scavenger hunt where users must take pictures and record audio of certain areas throughout the venue. This allowed users to both collect memories of the festival and be able to redeem them for prizes.
 Users were tasked with finding certain images or audio clips that would fit the given clue. Once the image or audio clip was verified users would be able to move on to the next clue. The users could then view possible prizes that were redeemable once at a certain step. Each prize has a unique QR code which can be scanned to verify that a user has completed their task(s).
 We've even added support for vendors who can track inventory of prizes and confirm the user’s QR code is accurate.
 
