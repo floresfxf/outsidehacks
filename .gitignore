@@ -33,8 +33,11 @@ local.properties
 # node.js
 #
 node_modules/
+google-cloud-sdk/
 npm-debug.log
 yarn-error.log
+outside_vision_credentials.json
+env.sh
 
 # BUCK
 buck-out/
