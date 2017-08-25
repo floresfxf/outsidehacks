@@ -35,9 +35,10 @@ local.properties
 node_modules/
 google-cloud-sdk/
 npm-debug.log
+env.sh
 yarn-error.log
 outside_vision_credentials.json
-env.sh
+
 
 # BUCK
 buck-out/
